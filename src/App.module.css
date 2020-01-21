@@ -1,0 +1,20 @@
+.wrapper {
+	height: 100vh;
+	width: 100vw;
+	background-color: white;
+	color: #040404;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	font-size: 3em;
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: 3px;
+	flex-direction: column;
+	background-color: #f3f3f3;
+	text-transform: uppercase;
+}
+.routine {
+	cursor: pointer;
+}

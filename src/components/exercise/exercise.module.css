@@ -1,0 +1,22 @@
+.exercise {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 0;
+	background: transparent;
+	border: none;
+	font-size: 1em;
+}
+
+.set {
+	position: absolute;
+	top: 25px;
+	right: 25px;
+	margin: 0;
+}
+
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
