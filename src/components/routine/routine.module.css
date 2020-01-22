@@ -1,8 +1,6 @@
 .container {
-	height: 90%;
-	width: 90%;
-	position: relative;
-	border-radius: 16px;
+	height: 100%;
+	width: 100%;
 }
 
 .exercises {
@@ -17,10 +15,8 @@
 	transition: transform 300ms ease;
 }
 .title {
+	display: none;
 	font-size: 26px;
-	position: absolute;
-	bottom: 50px;
-	right: 50px;
 }
 .exercise {
 	font-size: 16px;

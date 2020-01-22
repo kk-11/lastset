@@ -3,182 +3,113 @@ let data = {
 	"push":
 	[
 		{
-			"name": "Incline Bench",
+			"name": "Push Ups",
 			"sets": [
 			{
 				"order": 1,
-				"weight": 52.5,
-				"unit": "kg",
-				"reps": 9
+				"weight": null,
+				"unit": null,
+				"reps": 8
 			},
 			{
 				"order": 2,
-				"weight": 52.5,
-				"unit": "kg",
-				"reps": 9
-
+				"weight": null,
+				"unit": null,
+				"reps": 8
 			},
 			{
 				"order": 3,
-				"weight": 52.5,
-				"unit": "kg",
-				"reps": 9
+				"weight": null,
+				"unit": null,
+				"reps": 8
 			},
 			{
 				"order": 4,
-				"weight": 52.5,
-				"unit": "kg",
-				"reps": 9
+				"weight": null,
+				"unit": null,
+				"reps": 8
 			}
 			]
 		},
 		{
-			"name": "Neutral pull ups",
-			"sets": [
-			{
-				"order": 1,
-				"weight": 15,
-				"unit": "kg",
-				"reps": 5
-			},
-			{
-				"order": 2,
-				"weight": 15,
-				"unit": "kg",
-				"reps": 5
-
-			},
-			{
-				"order": 3,
-				"weight": 15,
-				"unit": "kg",
-				"reps": 5
-			},
-			{
-				"order": 4,
-				"weight": 15,
-				"unit": "kg",
-				"reps": 5
-			}
-			]
-		},
-		{
-			"name": "Incline DB",
-			"sets": [
-			{
-				"order": 1,
-				"weight": 23,
-				"unit": "kg",
-				"reps": 9
-			},
-			{
-				"order": 2,
-				"weight": 23,
-				"unit": "kg",
-				"reps": 9
-
-			},
-			{
-				"order": 3,
-				"weight": 23,
-				"unit": "kg",
-				"reps": 9
-			},
-			{
-				"order": 4,
-				"weight": 23,
-				"unit": "kg",
-				"reps": 9
-			}
-			]
-		},
-		{
-			"name": "Cables up",
+			"name": "Db Bench",
 			"sets": [
 			{
 				"order": 1,
 				"weight": 30,
-				"unit": "lbs",
-				"reps": 9
+				"unit": "kg",
+				"reps": 7
 			},
 			{
 				"order": 2,
 				"weight": 30,
-				"unit": "lbs",
-				"reps": 9
+				"unit": "kg",
+				"reps": 7
 
 			},
 			{
 				"order": 3,
 				"weight": 30,
-				"unit": "lbs",
-				"reps": 9
+				"unit": "kg",
+				"reps": 7
 			},
 			{
 				"order": 4,
 				"weight": 30,
-				"unit": "lbs",
-				"reps": 9
+				"unit": "kg",
+				"reps": 7
 			}
 			]
 		},
 		{
-			"name": "Machine shoulder",
+			"name": "Cables Down",
 			"sets": [
 			{
 				"order": 1,
-				"weight": 25,
-				"unit": "kg",
-				"reps": 10
-			},
-			{
-				"order": 2,
-				"weight": 25,
-				"unit": "kg",
-				"reps": 10
-
-			},
-			{
-				"order": 3,
-				"weight": 25,
-				"unit": "kg",
-				"reps": 10
-			},
-			{
-				"order": 4,
-				"weight": 25,
-				"unit": "kg",
-				"reps": 10
-			}
-			]
-		},
-		{
-			"name": "Lateral raises",
-			"sets": [
-			{
-				"order": 1,
-				"weight": 8.5,
+				"weight": 18,
 				"unit": "kg",
 				"reps": 9
 			},
 			{
 				"order": 2,
-				"weight": 8.5,
+				"weight": 18,
 				"unit": "kg",
 				"reps": 9
 
 			},
 			{
 				"order": 3,
-				"weight": 8.5,
+				"weight": 18,
 				"unit": "kg",
 				"reps": 9
 			},
 			{
 				"order": 4,
-				"weight": 8.5,
+				"weight": 18,
 				"unit": "kg",
 				"reps": 9
+			}
+			]
+		},
+		{
+			"name": "IWYT",
+			"sets": [
+			{
+				"order": 1,
+				"weight": 1.25,
+				"unit": "kg",
+				"reps": 7
+			}
+			]
+		},
+		{
+			"name": "Pec stretch",
+			"sets": [
+			{
+				"order": 1,
+				"weight": null,
+				"unit": "s",
+				"reps": 120
 			}
 			]
 		},
@@ -187,28 +118,58 @@ let data = {
 			"sets": [
 			{
 				"order": 1,
+				"weight": null,
+				"unit": null,
+				"reps": 8
+			},
+			{
+				"order": 2,
+				"weight": null,
+				"unit": null,
+				"reps": 8
+
+			},
+			{
+				"order": 3,
+				"weight": null,
+				"unit": null,
+				"reps": 8
+			},
+			{
+				"order": 4,
+				"weight": null,
+				"unit": null,
+				"reps": 8
+			}
+			]
+		},
+		{
+			"name": "Dumbbell skulls",
+			"sets": [
+			{
+				"order": 1,
 				"weight": 10,
 				"unit": "kg",
-				"reps": 8
+				"reps": 9
 			},
 			{
 				"order": 2,
 				"weight": 10,
 				"unit": "kg",
-				"reps": 8
+				"reps": 9
 
 			},
 			{
 				"order": 3,
 				"weight": 10,
 				"unit": "kg",
-				"reps": 8
+				"reps": 9
 			},
 			{
 				"order": 4,
 				"weight": 10,
 				"unit": "kg",
-				"reps": 8
+				"reps": 9
 			}
 			]
 		},
@@ -217,28 +178,69 @@ let data = {
 			"sets": [
 			{
 				"order": 1,
-				"weight": 10,
+				"weight": 30,
 				"unit": "kg",
-				"reps": 8
+				"reps": 11
 			},
 			{
 				"order": 2,
-				"weight": 10,
+				"weight": 30,
 				"unit": "kg",
-				"reps": 8
+				"reps": 11
 
 			},
 			{
 				"order": 3,
-				"weight": 10,
+				"weight": 30,
 				"unit": "kg",
-				"reps": 8
+				"reps": 11
 			},
 			{
 				"order": 4,
-				"weight": 10,
+				"weight": 30,
 				"unit": "kg",
-				"reps": 8
+				"reps": 11
+			}
+			]
+		},
+		{
+			"name": "Hanging leg raise",
+			"sets": [
+			{
+				"order": 1,
+				"weight": null,
+				"unit": null,
+				"reps": 16
+			},
+			{
+				"order": 2,
+				"weight": null,
+				"unit": null,
+				"reps": 16
+
+			},
+			{
+				"order": 3,
+				"weight": null,
+				"unit": null,
+				"reps": 16
+			},
+			{
+				"order": 4,
+				"weight": null,
+				"unit": null,
+				"reps": 16
+			}
+			]
+		},
+		{
+			"name": "Plank",
+			"sets": [
+			{
+				"order": 1,
+				"weight": null,
+				"unit": "s",
+				"reps": 80
 			}
 			]
 		}

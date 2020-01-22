@@ -24,6 +24,7 @@ export default class Exercise extends React.Component {
 	//--- LIFE
 	componentDidMount() {
 		this.sets = this.props.exercise.sets.length;
+		console.log(this.sets, 'num sets')
 		this.unit = this.props.exercise.sets[this.state.set].unit;
 
 		this.minimumIncrement = this.unit === 'kg' ? 1.25 : 1.25;
@@ -84,7 +85,8 @@ export default class Exercise extends React.Component {
 			return;
 		}
 		this.setState({
-			set: this.state.set + 1
+			set: this.state.set + 1,
+			weight: this.state.weight + 1
 		});
 	}
 
@@ -106,6 +108,7 @@ export default class Exercise extends React.Component {
 		});
 	}
 	reset() {
+		console.log(this.props.exercise.sets, this.state.set)
 		this.setState({
 			set: 0,
 			weight: this.props.exercise.sets[this.state.set].weight,
@@ -123,6 +126,7 @@ export default class Exercise extends React.Component {
 
 		return (
 			<div className={s.wrapper}>
+				<p className={s.set}>{this.state.set + 1}</p>
 				<form onSubmit={this.handleSubmit}>
 					<input
 						className={s.exercise}
@@ -146,7 +150,6 @@ export default class Exercise extends React.Component {
 					<p className={s.reps}>{this.state.reps}</p>
 					<button onClick={this.increaseReps}>+</button>
 				</div>
-				<p className={s.set}>{this.state.set + 1}</p>
 				<button onClick={this.incrementSet}>Update</button>
 			</div>
 		);
