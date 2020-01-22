@@ -32,7 +32,6 @@ export default class Routine extends React.Component {
 			updateStorage,
 			fullData = {}
 		} = this.props;
-
 		const activeSets = routine[this.state.activeExercise].sets.length;
 		return (
 			<div className={s.container}>

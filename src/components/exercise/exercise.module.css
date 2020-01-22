@@ -6,23 +6,78 @@
 	flex-direction: column;
 	align-items: center;
 }
+.alert {
+	background: red;
+}
+
+.log {
+	font-size: 12vw;
+	text-transform: uppercase;
+	font-weight: bolder;
+	font-style: italic;
+	text-align: center;
+	border: 4px solid orange;
+}
 .exercise {
 	margin: 0;
 	background: transparent;
 	border: none;
-	font-size: 1em;
+	font-size: 12vw;
+	width: 100%;
+	text-transform: uppercase;
+	font-weight: bolder;
+	font-style: italic;
 	text-align: center;
-	font-weight: bold;
 }
 
 .set {
 	padding: 20px;
+	font-size: 16vw;
+	text-transform: uppercase;
+	font-weight: bolder;
+	font-style: italic;
+	text-align: center;
 }
 
 .container {
+	position: relative;
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-around;
+	width: 100%;
+}.hide {
+	display: none;
+}
+.weight {
+	font-size: 36px;
+}
+.unit {
+	font-size: 20vw;
+	font-weight: bolder;
+	font-style: italic;
+	position: absolute;
+	left: 50%;
+	bottom: 10%;
+	transform: translate(-50%, 50%);
+	opacity: 0.2;
+	color: rebeccapurple;
+
+}
+.reps {
+	font-size: 16vw;
+	text-transform: uppercase;
+	font-weight: bolder;
+	font-style: italic;
+	text-align: center;
+}
+.btn {
+	background: #cfcfcf;
+	padding: 40px;
+	font-size: 16vw;
+	text-transform: uppercase;
+	font-weight: bolder;
+	font-style: italic;
+	text-align: center;
 }
 p {
 	margin: 0;

@@ -32,7 +32,7 @@ let data = {
 			]
 		},
 		{
-			"name": "Db Bench",
+			"name": "Dumbell Bench",
 			"sets": [
 			{
 				"order": 1,
@@ -248,7 +248,222 @@ let data = {
 	"pull":
 	[
 		{
-			"name": "Neutral pull ups"
+			"name": "Wide Pull ups",
+			"sets": [
+			{
+				"order": 1,
+				"weight": null,
+				"unit": null,
+				"reps": 5
+			},
+			{
+				"order": 2,
+				"weight": null,
+				"unit": null,
+				"reps": 5
+			},
+			{
+				"order": 3,
+				"weight": null,
+				"unit": null,
+				"reps": 5
+			},
+			{
+				"order": 4,
+				"weight": null,
+				"unit": null,
+				"reps": 5
+			}
+		]
+		},
+		{
+			"name": "Pendleton Row",
+			"sets": [
+			{
+				"order": 1,
+				"weight": 50,
+				"unit": 'kg',
+				"reps": 10
+			},
+			{
+				"order": 2,
+				"weight": 50,
+				"unit": 'kg',
+				"reps": 10
+			},
+			{
+				"order": 3,
+				"weight": 50,
+				"unit": 'kg',
+				"reps": 10
+			},
+			{
+				"order": 4,
+				"weight": 50,
+				"unit": 'kg',
+				"reps": 10
+			}
+		]
+		},
+		{
+			"name": "Dumbbell Row",
+			"sets": [
+			{
+				"order": 1,
+				"weight": 22.5,
+				"unit": 'kg',
+				"reps": 10
+			},
+			{
+				"order": 2,
+				"weight": 22.5,
+				"unit": 'kg',
+				"reps": 10
+			},
+			{
+				"order": 3,
+				"weight": 22.5,
+				"unit": 'kg',
+				"reps": 10
+			},
+			{
+				"order": 4,
+				"weight": 22.5,
+				"unit": 'kg',
+				"reps": 10
+			}
+		]
+		},
+		{
+			"name": "Scapula push up",
+			"sets": [
+			{
+				"order": 1,
+				"weight": null,
+				"unit": null,
+				"reps": 30
+			}
+		]
+		},
+		{
+			"name": "Angels",
+			"sets": [
+			{
+				"order": 1,
+				"weight": null,
+				"unit": null,
+				"reps": 30
+			}
+		]
+		},
+		{
+			"name": "IYWT",
+			"sets": [
+			{
+				"order": 1,
+				"weight": 5,
+				"unit": 's',
+				"reps": 10
+			}
+		]
+		},
+		{
+			"name": "DB Curls",
+			"sets": [
+			{
+				"order": 1,
+				"weight": 12.5,
+				"unit": 'kg',
+				"reps": 7
+			},
+			{
+				"order": 2,
+				"weight": 12.5,
+				"unit": 'kg',
+				"reps": 7
+			},
+			{
+				"order": 3,
+				"weight": 12.5,
+				"unit": 'kg',
+				"reps": 7
+			},
+			{
+				"order": 4,
+				"weight": 12.5,
+				"unit": 'kg',
+				"reps": 7
+			}
+		]
+		},
+		{
+			"name": "DB Curls",
+			"sets": [
+			{
+				"order": 1,
+				"weight": 7.5,
+				"unit": 'kg',
+				"reps": 10
+			},
+			{
+				"order": 2,
+				"weight": 7.5,
+				"unit": 'kg',
+				"reps": 10
+			},
+			{
+				"order": 3,
+				"weight": 7.5,
+				"unit": 'kg',
+				"reps": 10
+			},
+			{
+				"order": 4,
+				"weight": 7.5,
+				"unit": 'kg',
+				"reps": 10
+			}
+		]
+		},
+		{
+			"name": "Crunches",
+			"sets": [
+			{
+				"order": 1,
+				"weight": null,
+				"unit": null,
+				"reps": 20
+			},
+			{
+				"order": 2,
+				"weight": null,
+				"unit": null,
+				"reps": 20
+			},
+			{
+				"order": 3,
+				"weight": null,
+				"unit": null,
+				"reps": 20
+			},
+			{
+				"order": 4,
+				"weight": null,
+				"unit": null,
+				"reps": 20
+			}
+		]
+		},
+		{
+			"name": "Leg raise hold",
+			"sets": [
+			{
+				"order": 1,
+				"weight": null,
+				"unit": 's',
+				"reps": 60
+			}
+		]
 		}
 	]
 	}
