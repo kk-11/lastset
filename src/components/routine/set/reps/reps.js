@@ -16,6 +16,13 @@ export default class Reps extends React.Component {
 			reps: this.props.reps
 		});
 	}
+	componentDidUpdate(prevProps, prevState) {
+		if(this.props.exercise !== prevProps.exercise) {
+			this.setState({
+				reps: this.props.reps
+			});
+		}
+	}
 
 	bump(vl) {
 		this.setState({

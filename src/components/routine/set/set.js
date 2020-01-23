@@ -2,6 +2,7 @@ import React from 'react';
 import clnms from 'classnames';
 import Reps from './reps/reps.js';
 import Weight from './weight/weight.js';
+import Exercise from './exercise/exercise.js';
 import s from './set.module.css';
 
 export default class Set extends React.Component {
@@ -9,8 +10,6 @@ export default class Set extends React.Component {
 		super(props);
 		this.reset = this.reset.bind(this);
 		this.incrementSet = this.incrementSet.bind(this);
-		this.handleChange = this.handleChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleUpdate = this.handleUpdate.bind(this);
 		this.timesUp = this.timesUp.bind(this);
 
@@ -48,15 +47,6 @@ export default class Set extends React.Component {
 			});
 		}
 	}
-	//---
-	handleSubmit(evt) {
-		evt.preventDefault();
-		// this.props.updateFullState(target, this.state.name)
-	}
-	handleChange(evt) {
-		this.setState({name: evt.target.value});
-	}
-
 
 	incrementSet() {
 		if (this.state.set === this.state.sets - 1) {
@@ -83,6 +73,9 @@ export default class Set extends React.Component {
 
 	handleUpdate(evt) {
 		clearTimeout(this.timer);
+		this.setState({
+			notify: false
+		});
 		evt.preventDefault();
 		this.timer = setTimeout(this.timesUp, 60000);
 		this.incrementSet();
@@ -113,13 +106,9 @@ export default class Set extends React.Component {
 					<p className={s.set}>{this.state.set + 1}</p>
 					<p className={s.unit}>set</p>
 				</div>
-				<form onSubmit={this.handleSubmit}>
-					<textarea
-						className={s.exercise}
-						onChange={this.handleChange}
-						value={this.state.name}
-					/>
-				</form>
+				<Exercise
+					exercise={name}
+				/>
 				<Weight
 					exercise={name}
 					weight={sets[this.state.set] && sets[this.state.set].weight}
