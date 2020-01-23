@@ -1,5 +1,5 @@
 import React from 'react';
-import Exercise from './../exercise/exercise.js';
+import Set from './set/set.js';
 // - - -
 import s from './routine.module.css';
 
@@ -36,7 +36,7 @@ export default class Routine extends React.Component {
 		return (
 			<div className={s.container}>
 				<h1 className={s.title}>{name}</h1>
-				<Exercise
+				<Set
 					fullData={fullData}
 					updateStorage={updateStorage}
 					nextExercise={this.increment}

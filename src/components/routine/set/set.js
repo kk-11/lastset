@@ -1,20 +1,15 @@
 import React from 'react';
 import clnms from 'classnames';
-import Reps from './../reps/reps.js';
-import s from './exercise.module.css';
+import Reps from './reps/reps.js';
+import Weight from './weight/weight.js';
+import s from './set.module.css';
 
-export default class Exercise extends React.Component {
+export default class Set extends React.Component {
 	constructor(props) {
 		super(props);
 		this.reset = this.reset.bind(this);
-		//move all this shit to utils ??
 		this.incrementSet = this.incrementSet.bind(this);
-		this.convertWeight = this.convertWeight.bind(this);
-		this.decreaseReps = this.decreaseReps.bind(this);
-		this.increaseReps = this.increaseReps.bind(this);
 		this.handleChange = this.handleChange.bind(this);
-		this.decreaseWeight = this.decreaseWeight.bind(this);
-		this.increaseWeight = this.increaseWeight.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleUpdate = this.handleUpdate.bind(this);
 		this.timesUp = this.timesUp.bind(this);
@@ -62,26 +57,6 @@ export default class Exercise extends React.Component {
 		this.setState({name: evt.target.value});
 	}
 
-	increaseWeight() {
-		this.setState({
-			weight: this.state.weight + this.minimumIncrement
-		})
-	}
-	decreaseWeight() {
-		this.setState({
-			weight: this.state.weight - this.minimumIncrement
-		})
-	}
-	increaseReps() {
-		this.setState({
-			reps: this.state.reps + 1
-		})
-	}
-	decreaseReps() {
-		this.setState({
-			reps: this.state.reps - 1
-		})
-	}
 
 	incrementSet() {
 		if (this.state.set === this.state.sets - 1) {
@@ -96,23 +71,6 @@ export default class Exercise extends React.Component {
 		});
 	}
 
-	convertWeight(evt) {
-		evt.preventDefault();
-		const weight = this.state.weight;
-		let converted;
-		if(this.unit === 'kg') {
-			converted = weight * 2.205;
-			converted = Math.round(converted * 100) / 100
-		}
-
-		if(this.unit === 'lbs') {
-			converted = weight / 2.205;
-		}
-		this.setState({
-			weight: converted,
-			unit: this.unit === 'kg' ? 'lbs' : 'kg'
-		});
-	}
 	reset() {
 		console.log(this.props.exercise.sets)
 		this.setState({
@@ -136,13 +94,17 @@ export default class Exercise extends React.Component {
 			notify: true
 		});
 	}
-	render() {
+	render(props) {
 		const {
 			exercise = '',
 			updateStorage,
 			fullData
 		} = this.props;
-		const showUnitClass = (this.state.unit !== (null || 's')) ? s.show : s.hide;
+
+		const {
+			sets,
+			name
+		} = exercise;
 
 		let repsOrS = this.state.reps > 20 ? 's' : 'reps';
 		return (
@@ -158,23 +120,14 @@ export default class Exercise extends React.Component {
 						value={this.state.name}
 					/>
 				</form>
-				<div className={clnms(s.container, showUnitClass)}>
-					<button className={s.btn} onClick={this.decreaseWeight}>-</button>
-					<p
-						className={s.weight}
-						onMouseEnter={this.convertWeight}
-						onMouseLeave={this.reset}
-					>
-						{this.state.weight}
-					</p>
-					<p
-						className={s.unit}
-					>
-						{this.state.unit}
-					</p>
-					<button className={s.btn} onClick={this.increaseWeight}>+</button>
-				</div>
-				<Reps reps={this.props.exercise.sets[this.state.set] && this.props.exercise.sets[this.state.set].reps}/>
+				<Weight
+					exercise={name}
+					weight={sets[this.state.set] && sets[this.state.set].weight}
+				/>
+				<Reps
+					exercise={name}
+					reps={sets[this.state.set] && sets[this.state.set].reps}
+				/>
 				<button class={s.log} onClick={(evt) => this.handleUpdate(evt)}>Log</button>
 			</div>
 		);
