@@ -1,0 +1,19 @@
+.log {
+	font-size: 12vw;
+	text-transform: uppercase;
+	font-weight: bolder;
+	font-style: italic;
+	text-align: center;
+	border: 4px solid orange;
+}
+.exercise {
+	margin: 0;
+	background: transparent;
+	border: none;
+	font-size: 12vw;
+	width: 100%;
+	text-transform: uppercase;
+	font-weight: bolder;
+	font-style: italic;
+	text-align: center;
+}

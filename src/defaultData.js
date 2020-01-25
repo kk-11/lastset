@@ -1,7 +1,6 @@
 let data = {
   "routines": {
-	"push":
-	[
+	"push": [
 		{
 			"name": "Push Ups",
 			"sets": [
@@ -9,7 +8,7 @@ let data = {
 				"order": 1,
 				"weight": null,
 				"unit": null,
-				"reps": 8
+				"reps": 10
 			},
 			{
 				"order": 2,
@@ -21,13 +20,13 @@ let data = {
 				"order": 3,
 				"weight": null,
 				"unit": null,
-				"reps": 8
+				"reps": 7
 			},
 			{
 				"order": 4,
 				"weight": null,
 				"unit": null,
-				"reps": 8
+				"reps": 6
 			}
 			]
 		},

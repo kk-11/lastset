@@ -8,52 +8,54 @@ export default class App extends React.Component {
 		super(props);
 
 		this.openRoutine = this.openRoutine.bind(this);
-		this.updateFullState = this.updateFullState.bind(this);
+		this.updateTopState = this.updateTopState.bind(this);
 		this.state = {
-			routine: null,
-			fullData: props.data
+			activeRoutine: null,
+			topState: props.data
 		}
 	}
 
-	updateFullState(newState) {
+	updateTopState(newState) {
 		this.setState({
-			fullData: newState
+			topState: newState
 		});
 	}
 
+
+
 	openRoutine(routine) {
 		this.setState({
-			routine: routine
+			activeRoutine: routine
 		});
 	}
 
 	render() {
-		const routines = this.props.data.routines;
-		const routinesArr = Object.keys(routines);
+		const routines = this.state.topState.routines;
+		console.log('fdjkal', routines, this.state)
 		return (
-		  <div className={clnms(s.wrapper)}>
-			{!this.state.routine ? (
-				routinesArr.map((key, idx) => {
-					return(
-						<div
-							className={`${s.routine} ${s[key]}`}
-							onClick={() => this.openRoutine(key)}
-							key={key}
-						>
-							{key}
-						</div>
-					);
-				})
-			) : (
-				<Routine
-					fullData={this.state.fullData}
-					updateFullState={this.updateFullState}
-					updateStorage={this.props.updateStorage}
-					routine={routines[this.state.routine]}
-					name={this.state.routine}
-				/>
-			)}
-		  </div>
+			<div className={s.wrapper}>
+				{!this.state.activeRoutine ? (
+					Object.keys(routines).map((key, idx) => {
+						return(
+							<div
+								className={`${s.routine} ${s[key]}`}
+								onClick={() => this.openRoutine(key)}
+								key={key}
+							>
+								{key}
+							</div>
+						);
+					})
+				) : (
+					<Routine
+						routineName={this.state.activeRoutine}
+						activeRoutine={routines[this.state.activeRoutine]}
+						topState={this.state.topState}
+						updateTopState={this.updateTopState}
+						updateStorage={this.props.updateStorage}
+					/>
+				)}
+			</div>
 		);
 	}
 }

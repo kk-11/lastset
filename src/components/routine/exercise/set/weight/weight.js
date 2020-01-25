@@ -5,9 +5,9 @@ import s from './weight.module.css';
 export default class Weight extends React.Component {
 	constructor(props) {
 		super(props);
-		this.minimumIncrement = 1;
+		this.minimumIncrement = this.props.unit === 'kg' ? 1.25 : 2.5;
 		this.decrease = this.bump.bind(this, -this.minimumIncrement);
-		this.increase = this.bump.bind(this +this.minimumIncrement);
+		this.increase = this.bump.bind(this, +this.minimumIncrement);
 		this.convertWeight = this.convertWeight.bind(this);
 		this.state = {
 			weight: null,
@@ -15,7 +15,6 @@ export default class Weight extends React.Component {
 		}
 	}
 	componentDidMount() {
-		this.minimumIncrement = this.props.unit === 'kg' ? 1.25 : 1.25;
 		this.setState({
 			weight: this.props.weight,
 			unit: this.props.unit,
@@ -49,16 +48,28 @@ export default class Weight extends React.Component {
 	}
 
 	bump(vl) {
+		const {
+			topState,
+			activeRoutine,
+			activeExercise,
+			activeSet,
+			routineName,
+			exerciseIndex
+		} = this.props;
+
+		let newState = topState;
+		newState.routines[routineName][exerciseIndex].sets[activeSet].weight = this.state.weight;
+		this.props.updateTopState(newState);
 		this.setState({
 			weight: this.state.weight + vl
 		});
 	}
 
 	render() {
-		console.log(this.state.weight)
 		const showUnitClass = (this.state.unit !== (null || 's')) ? s.show : s.hide;
+		const hideClass = this.props.weight === null ? s.hide : s.show;
 		return(
-			<div className={clnms(s.container, showUnitClass)}>
+			<div className={clnms(s.container, showUnitClass, hideClass)}>
 				<button className={s.btn} onClick={this.decrease}>-</button>
 				<p
 					className={s.weight}

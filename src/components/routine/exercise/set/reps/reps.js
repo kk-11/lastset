@@ -5,8 +5,8 @@ import s from './reps.module.css';
 export default class Reps extends React.Component {
 	constructor(props) {
 		super(props);
-		this.decrease = this.bump.bind(this, +1);
-		this.increase = this.bump.bind(this);
+		this.decrease = this.bump.bind(this, -1);
+		this.increase = this.bump.bind(this, +1);
 		this.state = {
 			reps: 0
 		}
@@ -25,10 +25,24 @@ export default class Reps extends React.Component {
 	}
 
 	bump(vl) {
+		const {
+			topState,
+			activeRoutine,
+			activeExercise,
+			activeSet,
+			routineName,
+			exerciseIndex
+		} = this.props;
+
+		let newState = topState;
+		newState.routines[routineName][exerciseIndex].sets[activeSet].reps = this.state.reps;
+		this.props.updateTopState(newState);
+		
 		this.setState({
 			reps: this.state.reps + vl
 		});
 	}
+
 	render() {
 		return(
 			<div className={s.container}>
