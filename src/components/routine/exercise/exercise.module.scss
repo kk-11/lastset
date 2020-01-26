@@ -1,6 +1,6 @@
 .exercise {
 	margin: 0;
-	background: transparent;
+	background: #f3f3f3;
 	border: none;
 	font-size: 12vw;
 	width: 100%;
@@ -10,14 +10,14 @@
 	text-align: center;
 	height: 100%;
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
 	flex-direction: column;
 	text-align: center;
 	position: relative;
 	&.alert {
-		background-color: red;
-	}
+			background: rgb(2,0,36);
+		}
 	.form {
 		.name {
 			background-color: transparent;
@@ -37,6 +37,8 @@
 		font-weight: bolder;
 		font-style: italic;
 		text-align: center;
-		border: 5px solid #030303;
+		position: absolute;
+		bottom: 0;
+		padding: 20px 40px;
 	}
 }

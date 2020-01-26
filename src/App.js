@@ -3,6 +3,7 @@ import clnms from 'classnames';
 import Routine from './components/routine/routine.js';
 import Menu from './components/shared/menu/menu.js';
 import Header from './components/shared/header/header.js';
+import ExerciseView from './components/shared/exerciseView/exerciseView.js';
 import s from './App.module.scss';
 
 export default class App extends React.Component {
@@ -11,10 +12,13 @@ export default class App extends React.Component {
 		this.toggleMenu = this.toggleMenu.bind(this);
 		this.openRoutine = this.openRoutine.bind(this);
 		this.updateTopState = this.updateTopState.bind(this);
+		this.activeView = this.activeView.bind(this);
+		this.setView = this.setView.bind(this);
 		this.state = {
 			activeRoutine: null,
 			topState: props.data,
 			menuActive: false,
+			activeView: ''
 		}
 	}
 
@@ -32,44 +36,73 @@ export default class App extends React.Component {
 	}
 	openRoutine(routine) {
 		this.setState({
-			activeRoutine: routine
+			activeRoutine: routine,
+			activeView: 'set'
 		});
+	}
+	setView (view) {
+		this.setState({
+			menuActive: false,
+			activeView: view
+		});
+	}
+
+	activeView() {
+		const {
+			topState,
+			menuActive,
+			activeRoutine,
+			activeView
+		} = this.state;
+
+
+		switch (activeView) {
+			case 'exercises':
+				return <ExerciseView />;
+				break;
+			case 'set':
+				const set = <Routine
+					menuActive={menuActive}
+					routineName={activeRoutine}
+					activeRoutine={topState.routines[activeRoutine]}
+					topState={topState}
+					updateTopState={this.updateTopState}
+					updateStorage={this.props.updateStorage}
+				/>
+				return set;
+				break;
+
+		}
 	}
 
 	render() {
 		const {
 			topState,
+			activeView,
 			menuActive,
 			activeRoutine
 		} = this.state;
-		const routines = topState.routines;
-		console.log(activeRoutine)
+
 		return (
 			<div className={s.wrapper}>
 				<Menu active={menuActive} toggleMenu={this.toggleMenu}/>
-				<Header active={menuActive} />
-				{!activeRoutine ? (
-					Object.keys(routines).map((key, idx) => {
+				<Header active={menuActive} setView={this.setView} activeView={activeView}/>
+				{ !this.state.activeRoutine ? (
+					Object.keys(topState.routines).map((key, idx) => {
 						return(
 							<div
-								className={`${s.routine} ${s[key]} ${menuActive ? s.blur : ''}`}
-								onClick={() => this.openRoutine(key)}
-								key={key}
+							className={`${s.routine} ${s[key]} ${menuActive ? s.blur : ''}`}
+							onClick={() => this.openRoutine(key)}
+							key={key}
 							>
-								{key}
+							{key}
 							</div>
 						);
 					})
 				) : (
-					<Routine
-						menuActive={menuActive}
-						routineName={activeRoutine}
-						activeRoutine={routines[activeRoutine]}
-						topState={this.state.topState}
-						updateTopState={this.updateTopState}
-						updateStorage={this.props.updateStorage}
-					/>
-				)}
+					this.activeView()
+				)
+				}
 			</div>
 		);
 	}

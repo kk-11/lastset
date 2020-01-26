@@ -27,13 +27,13 @@ export default class Reps extends React.Component {
 	bump(vl) {
 		const {
 			topState,
-			activeSet,
+			setIndex,
 			routineName,
 			exerciseIndex
 		} = this.props;
 
 		let newState = topState;
-		newState.routines[routineName][exerciseIndex].sets[activeSet].reps = this.state.reps + vl;
+		newState.routines[routineName][exerciseIndex].sets[setIndex].reps = this.state.reps + vl;
 		this.props.updateTopState(newState);
 
 		this.setState({
@@ -42,14 +42,17 @@ export default class Reps extends React.Component {
 	}
 
 	render() {
+		const {
+			isSeconds
+		} = this.props;
 		return(
 			<div className={s.container}>
 				<button className={s.btn} onClick={this.decrease}>-</button>
 				<p className={s.reps}>{this.state.reps}</p>
 				<p
-					className={clnms(s.unit)}
+					className={clnms(s.unit, isSeconds ? s.seconds : s.reps)}
 				>
-					reps
+					{isSeconds ? 'seconds' : 'reps'}
 				</p>
 				<button className={s.btn} onClick={this.increase}>+</button>
 			</div>

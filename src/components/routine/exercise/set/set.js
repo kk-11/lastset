@@ -9,17 +9,18 @@ export default class Set extends React.Component {
 		super(props);
 
 		this.state = {
-			activeSet: 0
+			setIndex: 0
 		}
 	}
 	render() {
 		const {
 			set,
-			activeSet,
+			setIndex,
 			updateTopState,
 			topState,
 			routineName,
-			exerciseIndex
+			exerciseIndex,
+			isSeconds
 		} = this.props;
 
 		const {
@@ -30,12 +31,12 @@ export default class Set extends React.Component {
 
 		return(
 			<div class={s.set}>
-				<h2 class={s.index}>{activeSet + 1}</h2>
+				<h2 class={s.index}>{setIndex + 1}</h2>
 				{weight &&
 					<Weight
 						exerciseIndex={exerciseIndex}
 						routineName={routineName}
-						activeSet={activeSet}
+						setIndex={setIndex}
 						topState={topState}
 						updateTopState={updateTopState}
 						weight={weight}
@@ -45,12 +46,13 @@ export default class Set extends React.Component {
 				{reps &&
 					<Reps
 						exerciseIndex={exerciseIndex}
-						activeSet={activeSet}
+						setIndex={setIndex}
 						routineName={routineName}
 						topState={topState}
 						updateTopState={updateTopState}
 						reps={reps}
 						unit={unit}
+						isSeconds={isSeconds}
 					/>
 				}
 			</div>

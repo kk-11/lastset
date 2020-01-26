@@ -14,7 +14,7 @@ export default class Exercise extends React.Component {
 
 		this.state = {
 			name: '',
-			activeSet: 0,
+			setIndex: 0,
 			set: {},
 			notify: false
 		}
@@ -41,7 +41,7 @@ export default class Exercise extends React.Component {
 		if(this.props.activeExercise.name !== nextProps.activeExercise.name) {
 			this.setState({
 				name: nextProps.activeExercise.name,
-				activeSet: 0
+				setIndex: 0
 			});
 		}
 	}
@@ -69,7 +69,7 @@ export default class Exercise extends React.Component {
 	handleRename(evt) {
 		const {
 			topState,
-			activeSet,
+			setIndex,
 			routineName,
 			exerciseIndex,
 			updateTopState
@@ -84,11 +84,11 @@ export default class Exercise extends React.Component {
 	}
 
 	incrementSet() {
-		if (this.state.activeSet === this.props.activeExercise.sets.length - 1) {
+		if (this.state.setIndex === this.props.activeExercise.sets.length - 1) {
 			this.props.nextExercise();
 		} else {
 			this.setState({
-				activeSet: this.state.activeSet + 1
+				setIndex: this.state.setIndex + 1
 			})
 		}
 	}
@@ -102,6 +102,9 @@ export default class Exercise extends React.Component {
 			exerciseIndex
 		}= this.props;
 
+		const isSeconds = topState.routines[routineName][exerciseIndex].sets[this.state.setIndex].reps > 20;
+		const nextStart = isSeconds ? 'START' : 'NEXT';
+		console.log(isSeconds)
 
 		return (
 			<div className={clnms(s.exercise, this.state.notify && s.alert)}>
@@ -113,19 +116,20 @@ export default class Exercise extends React.Component {
 					/>
 				</form>
 				{activeExercise.sets.map((set, idx) => {
-					if (idx === this.state.activeSet) {
+					if (idx === this.state.setIndex) {
 						return(
 							<Set
 								exerciseIndex={exerciseIndex}
 								routineName={routineName}
+								isSeconds={isSeconds}
 								topState={topState}
 								updateTopState={updateTopState}
-								activeSet={this.state.activeSet}
-								set={activeExercise.sets[this.state.activeSet]} />
+								setIndex={this.state.setIndex}
+								set={activeExercise.sets[this.state.setIndex]} />
 						);
 					}
 				})}
-				<button class={s.log} onClick={(evt) => this.handleUpdate(evt)}>Log</button>
+				<button class={s.log} onClick={(evt) => this.handleUpdate(evt)}>{nextStart}</button>
 			</div>
 		);
 	}
