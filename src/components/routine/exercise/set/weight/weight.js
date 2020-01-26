@@ -54,11 +54,13 @@ export default class Weight extends React.Component {
 			activeSet,
 			routineName,
 			exerciseIndex,
+			setIndex,
 			updateTopState
 		} = this.props;
 
 		let newState = topState;
-		newState.routines[routineName][exerciseIndex].sets[activeSet].weight = this.state.weight + vl;
+		console.log(newState.routines, activeSet)
+		newState.routines[routineName][exerciseIndex].sets[setIndex].weight = this.state.weight + vl;
 		updateTopState(newState);
 		this.setState({
 			weight: this.state.weight + vl
@@ -69,19 +71,18 @@ export default class Weight extends React.Component {
 	}
 
 	render() {
-		const showUnitClass = (this.state.unit !== (null || 's')) ? s.show : s.hide;
-		const hideClass = this.props.weight === null ? s.hide : s.show;
+		const unitClass = this.state.unit === 'kg' ? s.kg : s.lbs;
 		return(
-			<div className={clnms(s.container, showUnitClass, hideClass)}>
+			<div className={s.container}>
 				<button className={s.btn} onClick={this.decrease}>-</button>
 				<p
 					onClick={this.convertWeight}
 					className={s.weight}
 				>
-					{Math.round(this.state.weight * 100) / 100}
+					{Math.ceil(this.state.weight / 0.25) * 0.25}
 				</p>
 				<p
-					className={s.unit}
+					className={clnms(s.unit, unitClass)}
 				>
 					{this.state.unit}
 				</p>

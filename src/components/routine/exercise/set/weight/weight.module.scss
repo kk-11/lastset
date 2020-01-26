@@ -13,7 +13,6 @@
 }
 
 .unit {
-	font-size: 70vw;
 	font-weight: bolder;
 	font-style: italic;
 	position: absolute;
@@ -24,6 +23,13 @@
 	color: rebeccapurple;
 	z-index: 0;
 	pointer-events: none;
+	transition: font-size 666ms ease;
+	&.kg {
+		font-size: 70vw;
+	}
+	&.lbs {
+		font-size: 50vw;
+	}
 }
 .reps {
 	font-size: 16vw;

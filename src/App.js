@@ -13,12 +13,16 @@ export default class App extends React.Component {
 		this.openRoutine = this.openRoutine.bind(this);
 		this.updateTopState = this.updateTopState.bind(this);
 		this.activeView = this.activeView.bind(this);
+		this.nextExercise = this.nextExercise.bind(this);
+		this.updateExercise = this.updateExercise.bind(this);
 		this.setView = this.setView.bind(this);
 		this.state = {
 			activeRoutine: null,
 			topState: props.data,
 			menuActive: false,
-			activeView: ''
+			activeView: '',
+			exerciseIndex: 0,
+			routineName: ''
 		}
 	}
 
@@ -35,12 +39,41 @@ export default class App extends React.Component {
 		});
 	}
 	openRoutine(routine) {
+
 		this.setState({
 			activeRoutine: routine,
-			activeView: 'set'
+			activeView: 'set',
+			menuActive: false
 		});
 	}
-	setView (view) {
+	updateExercise(idx) {
+		this.setState({
+			exerciseIndex: idx
+		})
+	}
+
+	nextExercise() {
+		const {
+			topState,
+			activeRoutine,
+			routineName,
+			exerciseIndex
+		} = this.state;
+
+		this.setState({
+			exerciseIndex: exerciseIndex + 1
+		});
+		if (exerciseIndex === topState.routines[activeRoutine].length - 1) {
+			//start over?
+			//back to home screen?
+			//
+			this.setState({
+				exerciseIndex: 0
+			});
+		}
+
+	}
+	setView(view) {
 		this.setState({
 			menuActive: false,
 			activeView: view
@@ -52,26 +85,38 @@ export default class App extends React.Component {
 			topState,
 			menuActive,
 			activeRoutine,
-			activeView
+			exerciseIndex,
+			activeView,
+			routineName
 		} = this.state;
 
 
 		switch (activeView) {
 			case 'exercises':
-				return <ExerciseView />;
+				return <ExerciseView
+					activeRoutine={topState.routines[activeRoutine]}
+					setView={this.setView}
+					topState={topState}
+					updateTopState={this.updateTopState}
+					updateExercise={this.updateExercise}
+					activeExercise={topState.routines[activeRoutine][exerciseIndex]}
+					routineName={activeRoutine}
+				/>;
 				break;
 			case 'set':
 				const set = <Routine
 					menuActive={menuActive}
+					exerciseIndex={exerciseIndex}
 					routineName={activeRoutine}
 					activeRoutine={topState.routines[activeRoutine]}
 					topState={topState}
 					updateTopState={this.updateTopState}
 					updateStorage={this.props.updateStorage}
+					activeExercise={topState.routines[activeRoutine][exerciseIndex]}
+					nextExercise={this.nextExercise}
 				/>
 				return set;
 				break;
-
 		}
 	}
 
@@ -86,14 +131,19 @@ export default class App extends React.Component {
 		return (
 			<div className={s.wrapper}>
 				<Menu active={menuActive} toggleMenu={this.toggleMenu}/>
-				<Header active={menuActive} setView={this.setView} activeView={activeView}/>
-				{ !this.state.activeRoutine ? (
+				<Header
+					active={menuActive}
+					setView={this.setView}
+					activeView={activeView}
+					routineView={this.openRoutine}
+				/>
+				{ !activeRoutine ? (
 					Object.keys(topState.routines).map((key, idx) => {
 						return(
 							<div
-							className={`${s.routine} ${s[key]} ${menuActive ? s.blur : ''}`}
-							onClick={() => this.openRoutine(key)}
-							key={key}
+								className={`${s.routine} ${s[key]} ${menuActive ? s.blur : ''}`}
+								onClick={() => this.openRoutine(key)}
+								key={key}
 							>
 							{key}
 							</div>

@@ -8,11 +8,11 @@ export default class Header extends React.Component {
 		const {
 			setView,
 			active,
-			activeView
+			activeView,
+			routineView
 		} = this.props;
 
 		const headerClass = active && s.active;
-		console.log(activeView)
 		return (
 			<div className={`${s.header} ${headerClass}`}>
 				{ activeView === 'set' &&
@@ -25,7 +25,12 @@ export default class Header extends React.Component {
 				}
 				{
 					activeView && (
-						<button class={s.item}>Back to routines</button>
+						<button
+							class={s.item}
+							onClick={() => routineView(false)}
+						>
+							Back to routines
+						</button>
 					)
 				}
 			</div>

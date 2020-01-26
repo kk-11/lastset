@@ -32,18 +32,35 @@ export default class Exercise extends React.Component {
 	componentDidMount() {
 		this.checkToNotify();
 		setInterval(this.checkToNotify, 1000);
+		const {
+			topState,
+			setIndex,
+			routineName,
+			exerciseIndex,
+			updateTopState
+		} = this.props;
+
+		let name = topState.routines[routineName][exerciseIndex].name;
 		this.setState({
-			name: this.props.activeExercise.name
+			name: name
 		});
 	}
 
 	componentDidUpdate(nextProps) {
-		if(this.props.activeExercise.name !== nextProps.activeExercise.name) {
-			this.setState({
-				name: nextProps.activeExercise.name,
-				setIndex: 0
-			});
-		}
+		const {
+			topState,
+			activeSet,
+			routineName,
+			exerciseIndex,
+			updateTopState
+		} = this.props;
+
+		// if(name.topState.routines[routineName][exerciseIndex] !== nextProps.topState.routines) {
+		// 	this.setState({
+		// 		name: nextProps.activeExercise.name,
+		// 		setIndex: 0
+		// 	});
+		// }
 	}
 
 	handleUpdate(evt) {
@@ -84,6 +101,7 @@ export default class Exercise extends React.Component {
 	}
 
 	incrementSet() {
+
 		if (this.state.setIndex === this.props.activeExercise.sets.length - 1) {
 			this.props.nextExercise();
 		} else {
@@ -101,10 +119,10 @@ export default class Exercise extends React.Component {
 			routineName,
 			exerciseIndex
 		}= this.props;
+		 console.log(exerciseIndex);
 
 		const isSeconds = topState.routines[routineName][exerciseIndex].sets[this.state.setIndex].reps > 20;
 		const nextStart = isSeconds ? 'START' : 'NEXT';
-		console.log(isSeconds)
 
 		return (
 			<div className={clnms(s.exercise, this.state.notify && s.alert)}>
@@ -115,7 +133,7 @@ export default class Exercise extends React.Component {
 						value={this.state.name}
 					/>
 				</form>
-				{activeExercise.sets.map((set, idx) => {
+				{topState.routines[routineName][exerciseIndex].sets.map((set, idx) => {
 					if (idx === this.state.setIndex) {
 						return(
 							<Set
@@ -125,7 +143,7 @@ export default class Exercise extends React.Component {
 								topState={topState}
 								updateTopState={updateTopState}
 								setIndex={this.state.setIndex}
-								set={activeExercise.sets[this.state.setIndex]} />
+								set={topState.routines[routineName][exerciseIndex].sets[this.state.setIndex]} />
 						);
 					}
 				})}
