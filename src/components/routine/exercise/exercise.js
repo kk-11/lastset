@@ -32,7 +32,6 @@ export default class Exercise extends React.Component {
 	componentDidMount() {
 		this.checkToNotify();
 		setInterval(this.checkToNotify, 1000);
-
 		this.setState({
 			name: this.props.activeExercise.name
 		});

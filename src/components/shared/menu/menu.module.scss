@@ -8,7 +8,8 @@
 	opacity: 0.3;
 	cursor: pointer;
 	transform: rotate(0);
-	transition: transform 666ms, border-radius 666ms ease-in;
+	transition: transform 2666ms;
+	
 	z-index: 9;
 	&.active {
 		border-radius: 100%;
