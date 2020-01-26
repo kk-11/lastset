@@ -2,7 +2,7 @@ import React from 'react';
 import clnms from 'classnames';
 import Reps from './reps/reps.js';
 import Weight from './weight/weight.js';
-import s from './set.module.css';
+import s from './set.module.scss';
 
 export default class Set extends React.Component {
 	constructor(props) {
@@ -30,7 +30,7 @@ export default class Set extends React.Component {
 
 		return(
 			<div class={s.set}>
-				<h2>{activeSet + 1}</h2>
+				<h2 class={s.index}>{activeSet + 1}</h2>
 				{weight &&
 					<Weight
 						exerciseIndex={exerciseIndex}

@@ -1,6 +1,6 @@
 import React from 'react';
 import clnms from 'classnames';
-import s from './reps.module.css';
+import s from './reps.module.scss';
 
 export default class Reps extends React.Component {
 	constructor(props) {
@@ -27,17 +27,15 @@ export default class Reps extends React.Component {
 	bump(vl) {
 		const {
 			topState,
-			activeRoutine,
-			activeExercise,
 			activeSet,
 			routineName,
 			exerciseIndex
 		} = this.props;
 
 		let newState = topState;
-		newState.routines[routineName][exerciseIndex].sets[activeSet].reps = this.state.reps;
+		newState.routines[routineName][exerciseIndex].sets[activeSet].reps = this.state.reps + vl;
 		this.props.updateTopState(newState);
-		
+
 		this.setState({
 			reps: this.state.reps + vl
 		});

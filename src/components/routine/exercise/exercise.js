@@ -1,24 +1,38 @@
 import React from 'react';
 import clnms from 'classnames';
 import Set from './set/set.js';
-import s from './exercise.module.css';
+import s from './exercise.module.scss';
 
 export default class Exercise extends React.Component {
 	constructor(props) {
 		super(props);
 		this.handleUpdate = this.handleUpdate.bind(this);
-		this.handleChange = this.handleChange.bind(this);
+		this.handleRename = this.handleRename.bind(this);
 		this.incrementSet = this.incrementSet.bind(this);
 		this.timesUp = this.timesUp.bind(this);
+		this.checkToNotify = this.checkToNotify.bind(this);
 
 		this.state = {
 			name: '',
 			activeSet: 0,
-			set: {}
+			set: {},
+			notify: false
 		}
 	}
 
+	checkToNotify() {
+		const timeStart = window.localStorage.getItem('kk11timer') || -1;
+		const timeEnd = new Date().getMinutes();
+		if (timeStart > timeEnd) {
+			this.setState({
+				notify: true
+			});
+		}
+	}
 	componentDidMount() {
+		this.checkToNotify();
+		setInterval(this.checkToNotify, 1000);
+
 		this.setState({
 			name: this.props.activeExercise.name
 		});
@@ -40,6 +54,8 @@ export default class Exercise extends React.Component {
 			notify: false
 		});
 		this.timer = setTimeout(this.timesUp, 60000);
+		const timeStart = new Date().getMinutes();
+		window.localStorage.setItem('kk11timer', timeStart)
 
 		this.incrementSet();
 	}
@@ -51,8 +67,21 @@ export default class Exercise extends React.Component {
 		});
 	}
 
-	handleChange(evt) {
-		this.setState({name: evt.target.value});
+	handleRename(evt) {
+		const {
+			topState,
+			activeSet,
+			routineName,
+			exerciseIndex,
+			updateTopState
+		} = this.props;
+
+		let newState = topState;
+		newState.routines[routineName][exerciseIndex].name = evt.target.value;
+		updateTopState(newState);
+		this.setState({
+			name: evt.target.value
+		});
 	}
 
 	incrementSet() {
@@ -77,10 +106,10 @@ export default class Exercise extends React.Component {
 
 		return (
 			<div className={clnms(s.exercise, this.state.notify && s.alert)}>
-				<form onSubmit={this.handleSubmit}>
+				<form class={s.form} onSubmit={this.handleSubmit}>
 					<textarea
 						className={s.name}
-						onChange={this.handleChange}
+						onChange={this.handleRename}
 						value={this.state.name}
 					/>
 				</form>

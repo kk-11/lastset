@@ -1,7 +1,7 @@
 import React from 'react';
 import Exercise from './exercise/exercise.js';
 // - - -
-import s from './routine.module.css';
+import s from './routine.module.scss';
 
 export default class Routine extends React.Component {
 	constructor(props) {
@@ -12,9 +12,23 @@ export default class Routine extends React.Component {
 		}
 	}
 	nextExercise() {
+		const {
+			topState,
+			activeRoutine,
+			routineName
+		} = this.props;
+
 		this.setState({
 			activeExercise: this.state.activeExercise + 1
 		});
+		if (this.state.activeExercise === topState.routines[routineName].length - 1) {
+			//start over?
+			//back to home screen?
+			//
+			this.setState({
+				activeExercise: 0
+			});
+		}
 
 	}
 
@@ -23,11 +37,12 @@ export default class Routine extends React.Component {
 			activeRoutine,
 			topState,
 			updateTopState,
-			routineName
+			routineName,
+			menuActive
 		} = this.props;
 
 		return (
-			<div className={s.container}>
+			<div className={`${s.container} ${menuActive ? s.active : ''}`}>
 				{activeRoutine.map((exercise, idx) => {
 					if (idx === this.state.activeExercise) {
 						return(

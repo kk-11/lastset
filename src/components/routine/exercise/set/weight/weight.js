@@ -1,6 +1,6 @@
 import React from 'react';
 import clnms from 'classnames';
-import s from './weight.module.css';
+import s from './weight.module.scss';
 
 export default class Weight extends React.Component {
 	constructor(props) {
@@ -11,7 +11,8 @@ export default class Weight extends React.Component {
 		this.convertWeight = this.convertWeight.bind(this);
 		this.state = {
 			weight: null,
-			unit: null
+			unit: null,
+			converted: null
 		}
 	}
 	componentDidMount() {
@@ -50,19 +51,21 @@ export default class Weight extends React.Component {
 	bump(vl) {
 		const {
 			topState,
-			activeRoutine,
-			activeExercise,
 			activeSet,
 			routineName,
-			exerciseIndex
+			exerciseIndex,
+			updateTopState
 		} = this.props;
 
 		let newState = topState;
-		newState.routines[routineName][exerciseIndex].sets[activeSet].weight = this.state.weight;
-		this.props.updateTopState(newState);
+		newState.routines[routineName][exerciseIndex].sets[activeSet].weight = this.state.weight + vl;
+		updateTopState(newState);
 		this.setState({
 			weight: this.state.weight + vl
 		});
+
+		const showWeight = this.convert ? this.state.weight : this.state.converted;
+
 	}
 
 	render() {
@@ -72,11 +75,10 @@ export default class Weight extends React.Component {
 			<div className={clnms(s.container, showUnitClass, hideClass)}>
 				<button className={s.btn} onClick={this.decrease}>-</button>
 				<p
+					onClick={this.convertWeight}
 					className={s.weight}
-					onMouseEnter={this.convert}
-					onMouseLeave={this.reset}
 				>
-					{this.state.weight}
+					{Math.round(this.state.weight * 100) / 100}
 				</p>
 				<p
 					className={s.unit}
@@ -88,3 +90,7 @@ export default class Weight extends React.Component {
 		)
 	}
 }
+
+
+// onMouseEnter={this.convert}
+// onMouseLeave={this.reset}

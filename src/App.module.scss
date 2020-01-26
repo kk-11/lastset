@@ -16,6 +16,7 @@ html, body {
 	flex-direction: column;
 	background-color: #f3f3f3;
 	text-transform: uppercase;
+	position: relative;
 }
 .routine {
 	cursor: pointer;
@@ -26,6 +27,10 @@ html, body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	transition: filter 666ms;
+	&.blur {
+		filter: blur(20px);
+	}
 }
 
 input {

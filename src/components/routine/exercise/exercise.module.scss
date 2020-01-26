@@ -1,0 +1,42 @@
+.exercise {
+	margin: 0;
+	background: transparent;
+	border: none;
+	font-size: 12vw;
+	width: 100%;
+	text-transform: uppercase;
+	font-weight: bolder;
+	font-style: italic;
+	text-align: center;
+	height: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: column;
+	text-align: center;
+	position: relative;
+	&.alert {
+		background-color: red;
+	}
+	.form {
+		.name {
+			background-color: transparent;
+			width: 100%;
+			height: auto;
+			border: none;
+			font-size: 12vw;
+			text-transform: uppercase;
+			font-weight: bolder;
+			font-style: italic;
+			text-align: center;
+		}
+	}
+	.log {
+		font-size: 12vw;
+		text-transform: uppercase;
+		font-weight: bolder;
+		font-style: italic;
+		text-align: center;
+		border: 5px solid #030303;
+	}
+}
