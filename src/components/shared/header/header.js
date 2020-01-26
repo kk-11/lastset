@@ -33,6 +33,12 @@ export default class Header extends React.Component {
 						</button>
 					)
 				}
+				<button
+					class={s.item}
+					onClick={() => routineView('settings')}
+				>
+					settings
+				</button>
 			</div>
 		);
 	}

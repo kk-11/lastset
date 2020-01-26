@@ -5,9 +5,7 @@ import s from './weight.module.scss';
 export default class Weight extends React.Component {
 	constructor(props) {
 		super(props);
-		this.minimumIncrement = this.props.unit === 'kg' ? 1.25 : 2.5;
-		this.decrease = this.bump.bind(this, -this.minimumIncrement);
-		this.increase = this.bump.bind(this, +this.minimumIncrement);
+		this.bump = this.bump.bind(this);
 		this.convertWeight = this.convertWeight.bind(this);
 		this.state = {
 			weight: null,
@@ -59,7 +57,7 @@ export default class Weight extends React.Component {
 		} = this.props;
 
 		let newState = topState;
-		console.log(newState.routines, activeSet)
+		console.log(vl)
 		newState.routines[routineName][exerciseIndex].sets[setIndex].weight = this.state.weight + vl;
 		updateTopState(newState);
 		this.setState({
@@ -72,26 +70,23 @@ export default class Weight extends React.Component {
 
 	render() {
 		const unitClass = this.state.unit === 'kg' ? s.kg : s.lbs;
+		const minimumIncrement = this.props.unit === 'kg' ? 1.25 : 2.5;
 		return(
 			<div className={s.container}>
-				<button className={s.btn} onClick={this.decrease}>-</button>
+				<button className={s.btn} onClick={() => this.bump(-minimumIncrement)}>-</button>
 				<p
 					onClick={this.convertWeight}
 					className={s.weight}
 				>
-					{Math.ceil(this.state.weight / 0.25) * 0.25}
+					{Math.ceil(this.state.weight / minimumIncrement) * minimumIncrement}
 				</p>
 				<p
 					className={clnms(s.unit, unitClass)}
 				>
 					{this.state.unit}
 				</p>
-				<button className={s.btn} onClick={this.increase}>+</button>
+				<button className={s.btn} onClick={() => this.bump(+minimumIncrement)}>+</button>
 			</div>
 		)
 	}
 }
-
-
-// onMouseEnter={this.convert}
-// onMouseLeave={this.reset}

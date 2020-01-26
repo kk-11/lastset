@@ -3,6 +3,7 @@ import clnms from 'classnames';
 import Routine from './components/routine/routine.js';
 import Menu from './components/shared/menu/menu.js';
 import Header from './components/shared/header/header.js';
+import swipedetect from './utils/utils.js';
 import ExerciseView from './components/shared/exerciseView/exerciseView.js';
 import s from './App.module.scss';
 
@@ -15,6 +16,8 @@ export default class App extends React.Component {
 		this.activeView = this.activeView.bind(this);
 		this.nextExercise = this.nextExercise.bind(this);
 		this.updateExercise = this.updateExercise.bind(this);
+		this.handleTouchMove = this.handleTouchMove.bind(this);
+		this.handleSwipe = this.handleSwipe.bind(this);
 		this.setView = this.setView.bind(this);
 		this.state = {
 			activeRoutine: null,
@@ -25,7 +28,21 @@ export default class App extends React.Component {
 			routineName: ''
 		}
 	}
+	componentDidMount() {
+		window.addEventListener('touchmove', this.handleTouchMove)
+		console.log(window.innerHeight)
+		swipedetect(window, this.handleSwipe);
+	}
+	componentWillUnmount() {
+		window.removeEventListener('touchmove', this.handleTouchMove)
+	}
+	handleTouchMove(evt) {
+		evt.preventDefault();
+	}
 
+	handleSwipe(direction) {
+		console.log(direction)
+	}
 	updateTopState(newState) {
 		this.props.updateLocalStorage(newState);
 		this.setState({
