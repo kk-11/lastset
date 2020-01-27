@@ -29,9 +29,9 @@ export default class App extends React.Component {
 		}
 	}
 	componentDidMount() {
-		window.addEventListener('touchmove', this.handleTouchMove)
-		console.log(window.innerHeight)
-		swipedetect(window, this.handleSwipe);
+		// window.addEventListener('touchmove', this.handleTouchMove)
+		// console.log(window.innerHeight)
+		// swipedetect(window, this.handleSwipe);
 	}
 	componentWillUnmount() {
 		window.removeEventListener('touchmove', this.handleTouchMove)

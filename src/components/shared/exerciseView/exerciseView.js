@@ -5,7 +5,12 @@ export default class ExerciseView extends React.Component {
 	constructor(props) {
 		super(props);
 		this.handleExerciseClick = this.handleExerciseClick.bind(this);
+		this.handleDrag = this.handleDrag.bind(this);
 
+	}
+	handleDrag(ev) {
+		console.log('drag')
+		ev.dataTransfer.setData("text", ev.target.id);
 	}
 	handleExerciseClick(idx) {
 		const {
@@ -33,9 +38,13 @@ export default class ExerciseView extends React.Component {
 			<div class={s.exerciseView}>
 			{activeRoutine.map((exercise, idx) => {
 				return(
-					<button class={s.item} onClick={() => this.handleExerciseClick(idx)}>
-						{exercise.name}
-					</button>
+					<div class={s.wrapper} draggable="true" onDragStart={this.handleDrag}>
+						<div class={s.move}>move</div>
+							<button class={s.item} onClick={() => this.handleExerciseClick(idx)}>
+								{exercise.name}
+							</button>
+						<div class={s.delete}>delete</div>
+					</div>
 				)
 			})}
 			</div>
