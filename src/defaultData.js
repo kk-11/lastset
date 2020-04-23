@@ -9,7 +9,7 @@ const data = {
 				"weight": null,
 				"reps": 16,
 				"unit": null,
-				"activeSet": 1,
+				"activeSet": 0,
 				"order": 0
 			},
 			{
@@ -18,7 +18,7 @@ const data = {
 				"weight": null,
 				"reps": 20,
 				"unit": null,
-				"activeSet": 1,
+				"activeSet": 0,
 				"order": 1
 			},
 			{
@@ -27,7 +27,7 @@ const data = {
 				"weight": null,
 				"reps": 5,
 				"unit": null,
-				"activeSet": 1,
+				"activeSet": 0,
 				"order": 2
 			},
 			{
@@ -36,7 +36,7 @@ const data = {
 				"weight": null,
 				"reps": 5,
 				"unit": null,
-				"activeSet": 1,
+				"activeSet": 0,
 				"order": 2
 			}
 		],
@@ -47,7 +47,7 @@ const data = {
 				"weight": null,
 				"reps": 8,
 				"unit": null,
-				"activeSet": 1,
+				"activeSet": 0,
 				"order": 0
 			},
 			{
@@ -56,7 +56,7 @@ const data = {
 				"weight": 30,
 				"reps": 8,
 				"unit": "kg",
-				"activeSet": 1,
+				"activeSet": 0,
 				"order": 1
 			},
 			{
@@ -65,7 +65,7 @@ const data = {
 				"weight": 18,
 				"reps": 9,
 				"unit": "kg",
-				"activeSet": 1,
+				"activeSet": 0,
 				"order": 2
 			},
 			{
@@ -74,7 +74,7 @@ const data = {
 				"weight": 1.25,
 				"reps": 7,
 				"unit": "kg",
-				"activeSet": 1,
+				"activeSet": 0,
 				"order": 3
 			},
 			{
@@ -83,7 +83,7 @@ const data = {
 				"weight": null,
 				"reps": 120,
 				"unit": "s",
-				"activeSet": 1,
+				"activeSet": 0,
 				"order": 4
 			},
 			{
@@ -92,7 +92,7 @@ const data = {
 				"weight": 5,
 				"reps": 9,
 				"unit": "kg",
-				"activeSet": 1,
+				"activeSet": 0,
 				"order": 5
 			},
 			{
@@ -101,7 +101,7 @@ const data = {
 				"weight": 10,
 				"reps": 9,
 				"unit": "kg",
-				"activeSet": 1,
+				"activeSet": 0,
 				"order": 6
 			},
 			{
@@ -110,7 +110,7 @@ const data = {
 				"weight": 30,
 				"reps": 11,
 				"unit": "kg",
-				"activeSet": 1,
+				"activeSet": 0,
 				"order": 7
 			},
 			{
@@ -119,7 +119,7 @@ const data = {
 				"weight": null,
 				"reps": 15,
 				"unit": null,
-				"activeSet": 1,
+				"activeSet": 0,
 				"order": 8
 			},
 			{
@@ -128,7 +128,7 @@ const data = {
 				"weight": null,
 				"reps": 80,
 				"unit": "s",
-				"activeSet": 1,
+				"activeSet": 0,
 				"order": 9
 			}
 		],
@@ -139,7 +139,7 @@ const data = {
 				"weight": null,
 				"reps": 5,
 				"unit": null,
-				"activeSet": 1
+				"activeSet": 0
 			},
 			{
 				"name": "Pendleton Row",
@@ -147,7 +147,7 @@ const data = {
 				"weight": 50,
 				"reps": 10,
 				"unit": "kg",
-				"activeSet": 1
+				"activeSet": 0
 			},
 			{
 				"name": "Dumbbell Row",
@@ -155,7 +155,7 @@ const data = {
 				"weight": 22.5,
 				"reps": 8,
 				"unit": "kg",
-				"activeSet": 1
+				"activeSet": 0
 			},
 			{
 				"name": "Scapula push up",
@@ -163,7 +163,7 @@ const data = {
 				"weight": null,
 				"reps": 30,
 				"unit": null,
-				"activeSet": 1
+				"activeSet": 0
 			},
 			{
 				"name": "Angels",
@@ -171,7 +171,7 @@ const data = {
 				"weight": null,
 				"reps": 30,
 				"unit": null,
-				"activeSet": 1
+				"activeSet": 0
 			},
 			{
 				"name": "IYWT",
@@ -179,7 +179,7 @@ const data = {
 				"weight": null,
 				"reps": 10,
 				"unit": null,
-				"activeSet": 1
+				"activeSet": 0
 			},
 			{
 				"name": "DB Curls",
@@ -187,7 +187,7 @@ const data = {
 				"weight": 12.5,
 				"reps": 7,
 				"unit": "kg",
-				"activeSet": 1
+				"activeSet": 0
 			},
 			{
 				"name": "Seated DB Curls",
@@ -195,7 +195,7 @@ const data = {
 				"weight": 7.5,
 				"reps": 10,
 				"unit": "kg",
-				"activeSet": 1
+				"activeSet": 0
 			},
 			{
 				"name": "Crunches",
@@ -203,7 +203,7 @@ const data = {
 				"weight": null,
 				"reps": 20,
 				"unit": null,
-				"activeSet": 1
+				"activeSet": 0
 			},
 			{
 				"name": "Leg raise hold",
@@ -211,7 +211,7 @@ const data = {
 				"weight": null,
 				"reps": 60,
 				"unit": null,
-				"activeSet": 1
+				"activeSet": 0
 			}
 		],
 		"legs": [
@@ -221,7 +221,7 @@ const data = {
 				"weight": 60,
 				"reps": 8,
 				"unit": "kg",
-				"activeSet": 1
+				"activeSet": 0
 			},
 			{
 				"name": "Deadlift",
@@ -229,7 +229,7 @@ const data = {
 				"weight": 100,
 				"reps": 8,
 				"unit": "kg",
-				"activeSet": 1
+				"activeSet": 0
 			},
 			{
 				"name": "Side Bend",
@@ -237,7 +237,7 @@ const data = {
 				"weight": 20,
 				"reps": 20,
 				"unit": null,
-				"activeSet": 1
+				"activeSet": 0
 			},
 			{
 				"name": "Side Twists",
@@ -245,7 +245,7 @@ const data = {
 				"weight": 20,
 				"reps": 12,
 				"unit": "kg",
-				"activeSet": 1
+				"activeSet": 0
 			},
 			{
 				"name": "Side Plank",
@@ -253,7 +253,7 @@ const data = {
 				"weight": null,
 				"reps": 60,
 				"unit": "s",
-				"activeSet": 1
+				"activeSet": 0
 			}
 		]
 	}

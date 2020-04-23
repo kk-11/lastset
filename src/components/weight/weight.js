@@ -19,6 +19,7 @@ export default class Weight extends React.Component {
 			unit: this.props.unit,
 		});
 	}
+
 	componentDidUpdate(prevProps, prevState) {
 		if(this.props.exercise !== prevProps.exercise) {
 			this.setState({
@@ -48,41 +49,30 @@ export default class Weight extends React.Component {
 
 	bump(vl) {
 		const {
-			topState,
-			activeSet,
-			routineName,
-			exerciseIndex,
-			setIndex,
-			updateTopState
+			weight,
+			unit
 		} = this.props;
 
-		let newState = topState;
-		console.log(vl)
-		newState.routines[routineName][exerciseIndex].sets[setIndex].weight = this.state.weight + vl;
-		updateTopState(newState);
 		this.setState({
 			weight: this.state.weight + vl
 		});
 
 		const showWeight = this.convert ? this.state.weight : this.state.converted;
-
 	}
 
 	render() {
+		console.log(this.props);
+		const { weight, unit } = this.props;
+		if (weight === null) return null;
 		const unitClass = this.state.unit === 'kg' ? s.kg : s.lbs;
 		const minimumIncrement = this.props.unit === 'kg' ? 1.25 : 2.5;
 		return(
 			<div className={s.container}>
 				<button className={s.btn} onClick={() => this.bump(-minimumIncrement)}>-</button>
-				<p
-					onClick={this.convertWeight}
-					className={s.weight}
-				>
+				<p onClick={this.convertWeight} className={s.weight}>
 					{Math.ceil(this.state.weight / minimumIncrement) * minimumIncrement}
 				</p>
-				<p
-					className={clnms(s.unit, unitClass)}
-				>
+				<p className={clnms(s.unit, unitClass)}>
 					{this.state.unit}
 				</p>
 				<button className={s.btn} onClick={() => this.bump(+minimumIncrement)}>+</button>

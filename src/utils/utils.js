@@ -37,4 +37,15 @@ function swipedetect(el, callback){
 	callback(swipedir);
 }
 
-module.exports = swipedetect;
+function createEmptyArray(length, filler = '_') {
+	const arr = [];
+	for(let i = 0; i<length; i++) {
+		arr.push(filler);
+	}
+	return(arr);
+}
+
+module.exports = {
+	swipedetect,
+	createEmptyArray
+}
