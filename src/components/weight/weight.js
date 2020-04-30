@@ -61,7 +61,6 @@ export default class Weight extends React.Component {
 	}
 
 	render() {
-		console.log(this.props);
 		const { weight, unit } = this.props;
 		if (weight === null) return null;
 		const unitClass = this.state.unit === 'kg' ? s.kg : s.lbs;

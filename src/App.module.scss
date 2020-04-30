@@ -5,6 +5,20 @@ html, body {
 .wrapper {
 	height: 100%;
 	width: 100vw;
+	.set {
+		height: 100%;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-around;
+		position: relative;
+		.timer {
+			position: absolute;
+			top: 20px;
+			right: 20px;
+		}
+	}
 }
 
 input {
