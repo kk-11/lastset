@@ -5,6 +5,9 @@ html, body {
 .wrapper {
 	height: 100%;
 	width: 100vw;
+	&.alert {
+		background-color: red;
+	}
 	.set {
 		height: 100%;
 		width: 100%;

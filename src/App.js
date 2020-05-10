@@ -6,6 +6,7 @@ import Weight from './components/weight/weight.js';
 import Exercise from './components/exercise/exercise.js';
 import Routines from './components/routines/routines.js';
 
+import clnms from 'classnames';
 import { swipedetect } from './utils/utils.js';
 
 import s from './App.module.scss';
@@ -24,6 +25,7 @@ export default class App extends React.Component {
 			set: 0,
 			routine: "home", // null,
 			count: 0,
+			alert: false,
 			exerciseIdx: 0,
 			view: 'routines',
 			data: props.data
@@ -41,10 +43,10 @@ export default class App extends React.Component {
 			case 'left':
 				this.updateSet(currentExercise);
 				break;
-			case 'left':
+			case 'right':
 				console.log('swiped right');
 				break;
-
+			default: return;
 		}
 	}
 
@@ -64,8 +66,18 @@ export default class App extends React.Component {
 	}
 
 	updateSet(currentExercise) {
-		const timer = setInterval(
+		this.setState({
+			alert: false,
+			count: 0
+		});
+		clearInterval(this.timer);
+		this.timer = setInterval(
 			() => {
+				if (this.state.count > 59) {
+					this.setState({
+						alert: true
+					})
+				}
 				this.setState({
 					count: this.state.count + 1
 				})
@@ -79,8 +91,20 @@ export default class App extends React.Component {
 		}
 	}
 
-	updateReps(value) {
-		console.log(value);
+	updateReps(newValue) {
+		this.setState(oldState => {
+			let newRoutine = [].concat(oldState.data.routines[oldState.routine]);
+			newRoutine[oldState.exerciseIdx] = { ...newRoutine[oldState.exerciseIdx], reps: newValue };
+			return {
+				data: {
+					...oldState.data,
+					routines: {
+						...oldState.data.routines,
+						[oldState.routine]: newRoutine
+					}
+				}
+			};
+		})
 	}
 
 	render() {
@@ -89,14 +113,15 @@ export default class App extends React.Component {
 			routine,
 			exerciseIdx,
 			set,
-			count
+			count,
+			alert
 		} = this.state;
 
 		const exercise = this.getExercise(data.routines, routine) || [];
 		const currentExercise = exercise[exerciseIdx];
 
 		return (
-			<div className={s.wrapper}>
+			<div className={clnms(s.wrapper, alert && s.alert)}>
 				<Routines
 					handleClick={this.setRoutine}
 					routines={Object.keys(data.routines)}
