@@ -29,15 +29,6 @@ const data = {
 				"unit": null,
 				"activeSet": 0,
 				"order": 2
-			},
-			{
-				"name": "IYWT",
-				"sets": 4,
-				"weight": null,
-				"reps": 5,
-				"unit": null,
-				"activeSet": 0,
-				"order": 2
 			}
 		],
 		"push": [

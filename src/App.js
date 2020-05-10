@@ -15,7 +15,7 @@ export default class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.setSet = this.setSet.bind(this);
-		this.updateSet = this.updateSet.bind(this);
+		this.updateReps = this.updateReps.bind(this);
 		this.updateData = this.updateData.bind(this);
 		this.setRoutine = this.setRoutine.bind(this);
 		this.updateReps = this.updateReps.bind(this);
@@ -109,10 +109,10 @@ export default class App extends React.Component {
 
 	render() {
 		const {
+			set,
 			data,
 			routine,
 			exerciseIdx,
-			set,
 			count,
 			alert
 		} = this.state;
@@ -134,7 +134,7 @@ export default class App extends React.Component {
 							<Set set={set} sets={currentExercise.sets} setSet={this.setSet} />
 							<Exercise exercise={currentExercise.name} />
 							<Weight weight={currentExercise.weight} unit={currentExercise.unit} />
-							<Reps reps={currentExercise.reps} bump={this.updateReps}/>
+							<Reps reps={currentExercise.reps} updateReps={this.updateReps}/>
 						</div>
 					)
 				}
