@@ -1,29 +1,13 @@
-html, body {
-	overflow: hidden;
+html,
+body {
 	height: 100%;
-}
-.wrapper {
-	height: 100%;
-	width: 100vw;
-	&.alert {
-		background-color: red;
-	}
-	.set {
-		height: 100%;
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: space-around;
-		position: relative;
-		.timer {
-			position: absolute;
-			top: 20px;
-			right: 20px;
-		}
-	}
 }
 
-input {
-	max-width: 100%
+.wrapper {
+	display: flex;
+	flex-direction: column;
+}
+
+.name {
+	display: inline-block;
 }

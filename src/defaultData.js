@@ -1,253 +1,308 @@
-const data = {
-	"activeRoutine": null,
-	"activeExercise": null,
-	"routines": {
-		"home": [
+const data = [
+	{
+		name: 'Day 1',
+		exercises: [
 			{
-				"name": "Incline Push Ups",
-				"sets": 4,
-				"weight": null,
-				"reps": 16,
-				"unit": null,
-				"activeSet": 0,
-				"order": 0
+				name: 'Front Squat',
+				sets: [
+					{
+						weight: 'light',
+						reps: 11,
+					},
+					{
+						weight: 'light',
+						reps: 5,
+					},
+					{
+						weight: 'light',
+						reps: 9,
+					},
+					{
+						weight: 'light',
+						reps: 10,
+					},
+				],
 			},
 			{
-				"name": "Sit Ups",
-				"sets": 4,
-				"weight": null,
-				"reps": 20,
-				"unit": null,
-				"activeSet": 0,
-				"order": 1
+				name: 'Db bench',
+				sets: [
+					{
+						weight: '28kg',
+						reps: 11,
+					},
+					{
+						weight: '28kg',
+						reps: 5,
+					},
+					{
+						weight: '28kg',
+						reps: 9,
+					},
+					{
+						weight: '28kg',
+						reps: 10,
+					},
+				],
 			},
 			{
-				"name": "IYWT",
-				"sets": 4,
-				"weight": null,
-				"reps": 5,
-				"unit": null,
-				"activeSet": 0,
-				"order": 2
-			}
+				name: 'Lat pull down',
+				sets: [
+					{
+						weight: '55kg',
+						reps: 11,
+					},
+					{
+						weight: '55kg',
+						reps: 5,
+					},
+					{
+						weight: '55kg',
+						reps: 9,
+					},
+					{
+						weight: '55kg',
+						reps: 10,
+					},
+				],
+			},
+			{
+				name: 'Barbell curl',
+				sets: [
+					{
+						weight: '20kg',
+						reps: 11,
+					},
+					{
+						weight: '20kg',
+						reps: 5,
+					},
+					{
+						weight: '20kg',
+						reps: 9,
+					},
+					{
+						weight: '20kg',
+						reps: 10,
+					},
+				],
+			},
+			{
+				name: 'Leg Raise',
+				sets: [
+					{
+						weight: '8',
+						reps: 11,
+					},
+					{
+						weight: '8',
+						reps: 5,
+					},
+					{
+						weight: '8',
+						reps: 9,
+					},
+					{
+						weight: '8',
+						reps: 10,
+					},
+				],
+			},
+			{
+				name: 'Leg Curl',
+				sets: [
+					{
+						weight: '35kg',
+						reps: 11,
+					},
+					{
+						weight: '35kg',
+						reps: 5,
+					},
+					{
+						weight: '35kg',
+						reps: 9,
+					},
+					{
+						weight: '35kg',
+						reps: 10,
+					},
+				],
+			},
 		],
-		"push": [
+	},
+	{
+		name: 'Day 2',
+		exercises: [
 			{
-				"name": "Push Ups",
-				"sets": 4,
-				"weight": null,
-				"reps": 8,
-				"unit": null,
-				"activeSet": 0,
-				"order": 0
+				name: 'Db Incline',
+				sets: [
+					{
+						weight: '20kg',
+						reps: 11,
+					},
+					{
+						weight: '20kg',
+						reps: 5,
+					},
+					{
+						weight: '20kg',
+						reps: 9,
+					},
+					{
+						weight: '20kg',
+						reps: 10,
+					},
+				],
 			},
 			{
-				"name": "Dumbell Bench",
-				"sets": 4,
-				"weight": 30,
-				"reps": 8,
-				"unit": "kg",
-				"activeSet": 0,
-				"order": 1
+				name: 'Cable Flye',
+				sets: [
+					{
+						weight: '20kg',
+						reps: 11,
+					},
+					{
+						weight: '20kg',
+						reps: 5,
+					},
+					{
+						weight: '20kg',
+						reps: 9,
+					},
+					{
+						weight: '20kg',
+						reps: 10,
+					},
+				],
 			},
 			{
-				"name": "Cables Down",
-				"sets": 4,
-				"weight": 18,
-				"reps": 9,
-				"unit": "kg",
-				"activeSet": 0,
-				"order": 2
+				name: 'T-bar Row',
+				sets: [
+					{
+						weight: '40kg',
+						reps: 11,
+					},
+					{
+						weight: '40kg',
+						reps: 5,
+					},
+					{
+						weight: '40kg',
+						reps: 9,
+					},
+					{
+						weight: '40kg',
+						reps: 10,
+					},
+				],
 			},
 			{
-				"name": "IWYT",
-				"sets": 4,
-				"weight": 1.25,
-				"reps": 7,
-				"unit": "kg",
-				"activeSet": 0,
-				"order": 3
+				name: 'Good Morning',
+				sets: [
+					{
+						weight: 'light',
+						reps: 11,
+					},
+					{
+						weight: 'light',
+						reps: 5,
+					},
+					{
+						weight: 'light',
+						reps: 9,
+					},
+					{
+						weight: 'light',
+						reps: 10,
+					},
+				],
 			},
 			{
-				"name": "Pec stretch",
-				"sets": null,
-				"weight": null,
-				"reps": 120,
-				"unit": "s",
-				"activeSet": 0,
-				"order": 4
+				name: 'Arnolds',
+				sets: [
+					{
+						weight: '14kg',
+						reps: 11,
+					},
+					{
+						weight: '14kg',
+						reps: 5,
+					},
+					{
+						weight: '14kg',
+						reps: 9,
+					},
+					{
+						weight: '14kg',
+						reps: 10,
+					},
+				],
 			},
 			{
-				"name": "Dips",
-				"sets": 4,
-				"weight": 5,
-				"reps": 9,
-				"unit": "kg",
-				"activeSet": 0,
-				"order": 5
+				name: 'Push downs',
+				sets: [
+					{
+						weight: '95kg / 25kg',
+						reps: 11,
+					},
+					{
+						weight: '95kg / 25kg',
+						reps: 5,
+					},
+					{
+						weight: '95kg / 25kg',
+						reps: 9,
+					},
+					{
+						weight: '95kg / 25kg',
+						reps: 10,
+					},
+				],
 			},
 			{
-				"name": "Dumbbell skulls",
-				"sets": 4,
-				"weight": 10,
-				"reps": 9,
-				"unit": "kg",
-				"activeSet": 0,
-				"order": 6
+				name: 'Smith Shrugs',
+				sets: [
+					{
+						weight: '25kg each side',
+						reps: 11,
+					},
+					{
+						weight: '25kg each side',
+						reps: 5,
+					},
+					{
+						weight: '25kg each side',
+						reps: 9,
+					},
+					{
+						weight: '25kg each side',
+						reps: 10,
+					},
+				],
 			},
 			{
-				"name": "Pushdowns",
-				"sets": 4,
-				"weight": 30,
-				"reps": 11,
-				"unit": "kg",
-				"activeSet": 0,
-				"order": 7
+				name: 'Side Bends',
+				sets: [
+					{
+						weight: '20kg',
+						reps: 11,
+					},
+					{
+						weight: '20kg',
+						reps: 5,
+					},
+					{
+						weight: '20kg',
+						reps: 9,
+					},
+					{
+						weight: '20kg',
+						reps: 10,
+					},
+				],
 			},
-			{
-				"name": "Hanging leg raise",
-				"sets": 4,
-				"weight": null,
-				"reps": 15,
-				"unit": null,
-				"activeSet": 0,
-				"order": 8
-			},
-			{
-				"name": "Plank",
-				"sets": null,
-				"weight": null,
-				"reps": 80,
-				"unit": "s",
-				"activeSet": 0,
-				"order": 9
-			}
 		],
-		"pull": [
-			{
-				"name": "Wide Pull ups",
-				"sets": 4,
-				"weight": null,
-				"reps": 5,
-				"unit": null,
-				"activeSet": 0
-			},
-			{
-				"name": "Pendleton Row",
-				"sets": 4,
-				"weight": 50,
-				"reps": 10,
-				"unit": "kg",
-				"activeSet": 0
-			},
-			{
-				"name": "Dumbbell Row",
-				"sets": 4,
-				"weight": 22.5,
-				"reps": 8,
-				"unit": "kg",
-				"activeSet": 0
-			},
-			{
-				"name": "Scapula push up",
-				"sets": null,
-				"weight": null,
-				"reps": 30,
-				"unit": null,
-				"activeSet": 0
-			},
-			{
-				"name": "Angels",
-				"sets": null,
-				"weight": null,
-				"reps": 30,
-				"unit": null,
-				"activeSet": 0
-			},
-			{
-				"name": "IYWT",
-				"sets": null,
-				"weight": null,
-				"reps": 10,
-				"unit": null,
-				"activeSet": 0
-			},
-			{
-				"name": "DB Curls",
-				"sets": 4,
-				"weight": 12.5,
-				"reps": 7,
-				"unit": "kg",
-				"activeSet": 0
-			},
-			{
-				"name": "Seated DB Curls",
-				"sets": 4,
-				"weight": 7.5,
-				"reps": 10,
-				"unit": "kg",
-				"activeSet": 0
-			},
-			{
-				"name": "Crunches",
-				"sets": 4,
-				"weight": null,
-				"reps": 20,
-				"unit": null,
-				"activeSet": 0
-			},
-			{
-				"name": "Leg raise hold",
-				"sets": null,
-				"weight": null,
-				"reps": 60,
-				"unit": null,
-				"activeSet": 0
-			}
-		],
-		"legs": [
-			{
-				"name": "Squats",
-				"sets": 4,
-				"weight": 60,
-				"reps": 8,
-				"unit": "kg",
-				"activeSet": 0
-			},
-			{
-				"name": "Deadlift",
-				"sets": 4,
-				"weight": 100,
-				"reps": 8,
-				"unit": "kg",
-				"activeSet": 0
-			},
-			{
-				"name": "Side Bend",
-				"sets": 4,
-				"weight": 20,
-				"reps": 20,
-				"unit": null,
-				"activeSet": 0
-			},
-			{
-				"name": "Side Twists",
-				"sets": 4,
-				"weight": 20,
-				"reps": 12,
-				"unit": "kg",
-				"activeSet": 0
-			},
-			{
-				"name": "Side Plank",
-				"sets": null,
-				"weight": null,
-				"reps": 60,
-				"unit": "s",
-				"activeSet": 0
-			}
-		]
-	}
-}
+	},
+];
 
 module.exports = data;
