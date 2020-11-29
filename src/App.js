@@ -8,25 +8,23 @@ import s from './App.module.scss';
 
 const App = () => {
 	const { state } = useContext(store);
-
-	const [activeWorkoutIdx, setActiveWorkoutIdx] = useState(null);
+	const { workouts } = state;
+	const [workoutIdx, setWorkoutIdx] = useState(null);
 
 	const handleClick = (i) => {
-		setActiveWorkoutIdx(i);
+		setWorkoutIdx(i);
 	};
-
-	const activeWorkout = state[activeWorkoutIdx];
 
 	return (
 		<div className={s.wrapper}>
-			{activeWorkoutIdx === null ? (
-				state.map(({ name }, idx) => (
+			{workoutIdx === null ? (
+				workouts.map(({ name }, idx) => (
 					<button key={name} onClick={() => handleClick(idx)}>
 						{name}
 					</button>
 				))
 			) : (
-				<WorkoutView data={activeWorkout} />
+				<WorkoutView data={workouts[workoutIdx]} />
 			)}
 		</div>
 	);

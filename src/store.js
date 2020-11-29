@@ -2,52 +2,52 @@ import React, { createContext, useReducer } from 'react';
 
 import data from './defaultData.js';
 
-const initialState = data;
+const initialState = {
+	workouts: data,
+	workout: null,
+	exercise: null,
+};
 
 const store = createContext(initialState);
 const { Provider } = store;
 
-function deletePropertyPath(obj, path) {
-	if (!obj || !path) {
-		return;
-	}
-
-	if (typeof path === 'string') {
-		path = path.split('.');
-	}
-
-	for (var i = 0; i < path.length - 1; i++) {
-		obj = obj[path[i]];
-
-		if (typeof obj === 'undefined') {
-			return;
-		}
-	}
-
-	delete obj[path.pop()];
-}
-
 const StateProvider = ({ children }) => {
 	const [state, dispatch] = useReducer((state, action) => {
-		const { type, value } = action || {};
-
-		return {
-			...state,
-			[type]: value,
-		};
+		const { type, workout, exercise, set } = action || {};
+		switch (type) {
+			case 'DELETE_EXERCISE':
+				state.workouts[workout].exercises.splice(exercise, 1);
+				return state;
+			case 'DELETE_SET':
+				state.workouts[workout].exercises[exercise].sets.splice(set, 1);
+				return state;
+			default:
+				return state;
+		}
 	}, initialState);
 
-	const deleteSet = (workout = 0, exercise = 0, set = 0) => {
-		state[workout].exercises[exercise].sets.splice(set, 1);
-
+	function deleteExercise({ workout, exercise }) {
 		dispatch({
-			type: 'workouts',
-			value: state[workout].exercises[exercise].sets.splice(set, 1),
+			type: 'DELETE_EXERCISE',
+			workout,
+			exercise,
 		});
-	};
+	}
 
-	console.log(state);
-	return <Provider value={{ state, deleteSet }}>{children}</Provider>;
+	function deleteSet({ workout, exercise, set }) {
+		dispatch({
+			type: 'DELETE_SET',
+			workout,
+			exercise,
+			set,
+		});
+	}
+
+	return (
+		<Provider value={{ state, deleteExercise, deleteSet }}>
+			{children}
+		</Provider>
+	);
 };
 
-export { store, StateProvider };
+export { StateProvider, store };
