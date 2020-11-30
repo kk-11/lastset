@@ -4,8 +4,8 @@ import data from './defaultData.js';
 
 const initialState = {
 	workouts: data,
-	workout: null,
-	exercise: null,
+	activeWorkout: null,
+	activeExercise: null,
 };
 
 const store = createContext(initialState);
@@ -19,8 +19,17 @@ const StateProvider = ({ children }) => {
 				state.workouts[workout].exercises.splice(exercise, 1);
 				return state;
 			case 'DELETE_SET':
-				state.workouts[workout].exercises[exercise].sets.splice(set, 1);
-				return state;
+				console.log('state: ', state);
+			case 'ACTIVE_WORKOUT':
+				return {
+					...state,
+					activeWorkout: workout,
+				};
+			case 'ACTIVE_EXERCISE':
+				return {
+					...state,
+					activeExercise: exercise,
+				};
 			default:
 				return state;
 		}
@@ -35,6 +44,7 @@ const StateProvider = ({ children }) => {
 	}
 
 	function deleteSet({ workout, exercise, set }) {
+		console.log(workout, exercise, set);
 		dispatch({
 			type: 'DELETE_SET',
 			workout,
@@ -43,8 +53,29 @@ const StateProvider = ({ children }) => {
 		});
 	}
 
+	function setWorkout(workout) {
+		dispatch({
+			type: 'ACTIVE_WORKOUT',
+			workout,
+		});
+	}
+
+	function setExercise(exercise) {
+		dispatch({
+			type: 'ACTIVE_EXERCISE',
+			exercise,
+		});
+	}
+
 	return (
-		<Provider value={{ state, deleteExercise, deleteSet }}>
+		<Provider
+			value={{
+				state,
+				setWorkout,
+				setExercise,
+				deleteExercise,
+				deleteSet,
+			}}>
 			{children}
 		</Provider>
 	);

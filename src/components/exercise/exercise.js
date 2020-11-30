@@ -6,12 +6,13 @@ import Reps from '../reps/reps';
 
 import s from './exercise.module.scss';
 
-export default function Exercise({ data, nextExercise }) {
-	const { deleteSet, addSet } = useContext(store);
+export default function Exercise({ data, nextExercise, active }) {
+	const { deleteSet, addSet, state } = useContext(store);
+	const { activeExercise: exercise, activeWorkout: workout } = state;
 	const [set, setSet] = useState(0);
 	const { name, sets } = data;
-
 	const { weight, reps } = sets[set];
+	console.log(data);
 
 	const enterSet = () => {
 		if (set < sets.length - 1) {
@@ -20,9 +21,12 @@ export default function Exercise({ data, nextExercise }) {
 			nextExercise();
 		}
 	};
-	const workout = 0;
-	const exercise = 0;
 
+	const handleDelete = () => {
+		deleteSet({ workout, exercise, set });
+	};
+
+	if (!active) return null;
 	return (
 		<div className={s.wrapper}>
 			<h3>{name}</h3>
@@ -33,9 +37,7 @@ export default function Exercise({ data, nextExercise }) {
 			</div>
 			<Reps reps={reps} />
 			<div>
-				<button onClick={() => deleteSet({ workout, exercise, set })}>
-					delete set
-				</button>
+				<button onClick={handleDelete}>delete set</button>
 				<button onClick={enterSet}>Enter</button>
 				<button onClick={addSet}>add set</button>
 			</div>
