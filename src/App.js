@@ -12,7 +12,6 @@ const App = () => {
 	const handleClick = (i) => {
 		setWorkout(i);
 	};
-	console.log(activeWorkout);
 	return (
 		<div className={s.wrapper}>
 			{activeWorkout === null ? (

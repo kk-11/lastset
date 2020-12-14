@@ -13,13 +13,8 @@ const { Provider } = store;
 
 const StateProvider = ({ children }) => {
 	const [state, dispatch] = useReducer((state, action) => {
-		const { type, workout, exercise, set } = action || {};
+		const { type, workout, exercise, newWeight, newReps } = action || {};
 		switch (type) {
-			case 'DELETE_EXERCISE':
-				state.workouts[workout].exercises.splice(exercise, 1);
-				return state;
-			case 'DELETE_SET':
-				console.log('state: ', state);
 			case 'ACTIVE_WORKOUT':
 				return {
 					...state,
@@ -30,28 +25,20 @@ const StateProvider = ({ children }) => {
 					...state,
 					activeExercise: exercise,
 				};
+			case 'UPDATE_WEIGHT':
+				state.workouts[state.activeWorkout].exercises[
+					state.activeExercise
+				].reps = newWeight;
+				return state;
+			case 'UPDATE_REPS':
+				state.workouts[state.activeWorkout].exercises[
+					state.activeExercise
+				].reps = newReps;
+				return state;
 			default:
 				return state;
 		}
 	}, initialState);
-
-	function deleteExercise({ workout, exercise }) {
-		dispatch({
-			type: 'DELETE_EXERCISE',
-			workout,
-			exercise,
-		});
-	}
-
-	function deleteSet({ workout, exercise, set }) {
-		console.log(workout, exercise, set);
-		dispatch({
-			type: 'DELETE_SET',
-			workout,
-			exercise,
-			set,
-		});
-	}
 
 	function setWorkout(workout) {
 		dispatch({
@@ -67,14 +54,28 @@ const StateProvider = ({ children }) => {
 		});
 	}
 
+	function updateWeight(newWeight) {
+		dispatch({
+			type: 'UPDATE_WEIGHT',
+			newWeight,
+		});
+	}
+
+	function updateReps(newReps) {
+		dispatch({
+			type: 'UPDATE_REPS',
+			newReps,
+		});
+	}
+
 	return (
 		<Provider
 			value={{
 				state,
+				updateReps,
 				setWorkout,
 				setExercise,
-				deleteExercise,
-				deleteSet,
+				updateWeight,
 			}}>
 			{children}
 		</Provider>

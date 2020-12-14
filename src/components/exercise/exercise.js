@@ -1,46 +1,44 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import { store } from '../../store';
 
 import Reps from '../reps/reps';
+import Weight from '../weight/weight';
 
 import s from './exercise.module.scss';
 
 export default function Exercise({ data, nextExercise, active }) {
-	const { deleteSet, addSet, state } = useContext(store);
-	const { activeExercise: exercise, activeWorkout: workout } = state;
-	const [set, setSet] = useState(0);
-	const { name, sets } = data;
-	const { weight, reps } = sets[set];
-	console.log(data);
+	const { updateReps, updateWeight } = useContext(store);
+	const { name, weight, reps } = data;
+	const [tempReps, setTempReps] = useState(reps);
+	const [tempWeight, setTempWeight] = useState(weight);
 
-	const enterSet = () => {
-		if (set < sets.length - 1) {
-			setSet(set + 1);
-		} else {
-			nextExercise();
-		}
+	useEffect(() => {
+		setTempReps(reps);
+		setTempWeight(weight);
+	}, [reps, weight]);
+
+	const incrementReps = (value) => {
+		setTempReps(tempReps + value);
 	};
 
-	const handleDelete = () => {
-		deleteSet({ workout, exercise, set });
+	const incrementWeight = (value) => {
+		setTempWeight(tempWeight + value);
+	};
+
+	const handleEnter = () => {
+		updateReps(tempReps);
+		updateWeight(tempWeight);
+		nextExercise();
 	};
 
 	if (!active) return null;
 	return (
 		<div className={s.wrapper}>
 			<h3>{name}</h3>
-			<div>
-				<button>-</button>
-				<h3 style={{ display: 'inline-block' }}>{weight}</h3>
-				<button>+</button>
-			</div>
-			<Reps reps={reps} />
-			<div>
-				<button onClick={handleDelete}>delete set</button>
-				<button onClick={enterSet}>Enter</button>
-				<button onClick={addSet}>add set</button>
-			</div>
+			<Weight weight={tempWeight} increment={incrementWeight} />
+			<Reps reps={tempReps} increment={incrementReps} />
+			<button onClick={handleEnter}>Enter</button>
 		</div>
 	);
 }

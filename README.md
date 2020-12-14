@@ -2,9 +2,7 @@ last set
 
 ## To do:
 
-    - Manage current workout/exercise on state?
-    - Delete set/exercise/workout
-    - Add set/exercise/workout
-    - Weight component
-    - Reps/Time component
+    - Edit exercise name
+    - Add/edit note
+    - Weight increment
     - Read and write to local storage
