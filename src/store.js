@@ -2,8 +2,20 @@ import React, { createContext, useReducer } from 'react';
 
 import data from './defaultData.js';
 
+const updateLocalStorage = (data) => {
+	const stringified = JSON.stringify(data);
+	window.localStorage.setItem('lastSetWTF', stringified);
+};
+
+let baseData = window.localStorage.getItem('lastSetWTF');
+if (baseData === null) {
+	updateLocalStorage(data);
+} else {
+	baseData = JSON.parse(baseData);
+}
+
 const initialState = {
-	workouts: data,
+	workouts: baseData,
 	activeWorkout: null,
 	activeExercise: null,
 };

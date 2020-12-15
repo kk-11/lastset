@@ -35,10 +35,12 @@ export default function Exercise({ data, nextExercise, active }) {
 	if (!active) return null;
 	return (
 		<div className={s.wrapper}>
-			<h3>{name}</h3>
+			<h3 className={s.title}>{name}</h3>
 			<Weight weight={tempWeight} increment={incrementWeight} />
 			<Reps reps={tempReps} increment={incrementReps} />
-			<button onClick={handleEnter}>Enter</button>
+			<button className={s.btn} onClick={handleEnter}>
+				Enter
+			</button>
 		</div>
 	);
 }
