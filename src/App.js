@@ -16,7 +16,10 @@ const App = () => {
 		<div className={s.wrapper}>
 			{activeWorkout === null ? (
 				workouts.map(({ name }, idx) => (
-					<button key={name} onClick={() => handleClick(idx)}>
+					<button
+						className={s.workout}
+						key={name}
+						onClick={() => handleClick(idx)}>
 						{name}
 					</button>
 				))

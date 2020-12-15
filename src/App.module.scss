@@ -11,6 +11,9 @@ body {
 	justify-content: center;
 }
 
-.name {
-	display: inline-block;
+.workout {
+	padding: 20px 30px;
+	border-radius: 10px;
+	background-color: rgba($color: #3d97bb, $alpha: 0.1);
+	margin-bottom: 2rem;
 }
