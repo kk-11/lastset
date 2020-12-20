@@ -5,11 +5,17 @@
 }
 
 .title {
-	margin-bottom: 20px;
+	resize: none;
+	text-align: center;
+	font-family: sans-serif;
+	font-size: 1.2rem;
+	font-weight: bold;
+	letter-spacing: 2px;
 }
 
 .btn {
 	padding: 20px 30px;
 	border-radius: 10px;
 	background-color: rgba($color: #3d97bb, $alpha: 0.1);
+	margin-top: 2rem;
 }

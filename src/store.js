@@ -16,8 +16,8 @@ if (baseData === null) {
 
 const initialState = {
 	workouts: baseData,
-	activeWorkout: null,
-	activeExercise: null,
+	activeWorkout: 0,
+	activeExercise: 0,
 };
 
 const store = createContext(initialState);
@@ -25,7 +25,8 @@ const { Provider } = store;
 
 const StateProvider = ({ children }) => {
 	const [state, dispatch] = useReducer((state, action) => {
-		const { type, workout, exercise, newWeight, newReps } = action || {};
+		const { type, workout, exercise, newWeight, newReps, newName } =
+			action || {};
 		switch (type) {
 			case 'ACTIVE_WORKOUT':
 				return {
@@ -40,12 +41,18 @@ const StateProvider = ({ children }) => {
 			case 'UPDATE_WEIGHT':
 				state.workouts[state.activeWorkout].exercises[
 					state.activeExercise
-				].reps = newWeight;
+				].weight = newWeight;
 				return state;
 			case 'UPDATE_REPS':
 				state.workouts[state.activeWorkout].exercises[
 					state.activeExercise
 				].reps = newReps;
+				return state;
+			case 'UPDATE_NAME':
+				state.workouts[state.activeWorkout].exercises[
+					state.activeExercise
+				].name = newName;
+				updateLocalStorage(state.workouts);
 				return state;
 			default:
 				return state;
@@ -79,11 +86,18 @@ const StateProvider = ({ children }) => {
 			newReps,
 		});
 	}
+	function updateName(newName) {
+		dispatch({
+			type: 'UPDATE_NAME',
+			newName,
+		});
+	}
 
 	return (
 		<Provider
 			value={{
 				state,
+				updateName,
 				updateReps,
 				setWorkout,
 				setExercise,

@@ -1,8 +1,27 @@
 .wrapper {
-	height: 100%;
 	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 2rem;
 }
 
+.reps {
+	position: relative;
+	padding: 0 2rem;
+	&:after {
+		position: absolute;
+		display: block;
+		color: red;
+		opacity: 0.3;
+		content: 'reps';
+		top: 0;
+		left: 0;
+		right: 0;
+		font-weight: bold;
+		font-size: 45px;
+	}
+}
 .btn {
 	padding: 20px 30px;
 	border-radius: 10px;

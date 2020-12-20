@@ -23,18 +23,20 @@ export default function WorkoutView({ data }) {
 
 	return (
 		<div className={s.wrapper}>
-			<h2 className={s.title}>{name}</h2>
 			{activeExercise === null ? (
-				exercises.map(({ name, weight, reps }, idx) => (
-					<button
-						key={name}
-						className={s.exercise}
-						onClick={() => handleClick(idx)}>
-						<div className={s.name}>{name}</div>
-						<div>{weight} kg</div>
-						<div>{reps} reps</div>
-					</button>
-				))
+				<>
+					<h2 className={s.title}>{name}</h2>
+					{exercises.map(({ name, weight, reps }, idx) => (
+						<button
+							key={name}
+							className={s.exercise}
+							onClick={() => handleClick(idx)}>
+							<div className={s.name}>{name}</div>
+							{weight !== null && <div>{weight} kg</div>}
+							{reps !== null && <div>{reps} reps</div>}
+						</button>
+					))}
+				</>
 			) : (
 				<div className={s.exercises}>
 					{exercises.map((exercise, idx) => (

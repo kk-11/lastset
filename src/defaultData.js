@@ -28,7 +28,7 @@ const data = [
 			},
 			{
 				name: 'Leg Raise',
-				weight: '8',
+				weight: null,
 				reps: 11,
 				notes: '',
 			},
