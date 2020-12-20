@@ -16,8 +16,8 @@ if (baseData === null) {
 
 const initialState = {
 	workouts: baseData,
-	activeWorkout: 0,
-	activeExercise: 0,
+	activeWorkout: null,
+	activeExercise: null,
 };
 
 const store = createContext(initialState);
