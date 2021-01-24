@@ -18,6 +18,7 @@ const initialState = {
 	workouts: baseData,
 	activeWorkout: null,
 	activeExercise: null,
+	user: undefined,
 };
 
 const store = createContext(initialState);
