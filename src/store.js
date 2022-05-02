@@ -1,5 +1,14 @@
 import React, { createContext, useReducer } from 'react';
 
+import {
+	setWorkout,
+	setExercise,
+	setWeight,
+	setReps,
+	setName,
+	save,
+} from './constants';
+
 import data from './defaultData.js';
 
 const updateLocalStorage = (data) => {
@@ -15,9 +24,9 @@ if (baseData === null) {
 }
 
 const initialState = {
-	workouts: data,
-	activeWorkout: null,
-	activeExercise: null,
+	workouts: baseData,
+	activeWorkoutIdx: null,
+	activeExerciseIdx: null,
 	user: undefined,
 };
 
@@ -26,83 +35,54 @@ const { Provider } = store;
 
 const StateProvider = ({ children }) => {
 	const [state, dispatch] = useReducer((state, action) => {
-		const { type, workout, exercise, newWeight, newReps, newName } =
-			action || {};
+		const { type, payload } = action || {};
+		const { workouts, activeExerciseIdx, activeWorkoutIdx } = state;
+
 		switch (type) {
-			case 'ACTIVE_WORKOUT':
+			case setWorkout:
 				return {
 					...state,
-					activeWorkout: workout,
+					activeWorkoutIdx: payload,
 				};
-			case 'ACTIVE_EXERCISE':
+			case setExercise:
 				return {
 					...state,
-					activeExercise: exercise,
+					activeExerciseIdx: payload,
 				};
-			case 'UPDATE_WEIGHT':
-				state.workouts[state.activeWorkout].exercises[
-					state.activeExercise
-				].weight = newWeight;
-				return state;
-			case 'UPDATE_REPS':
-				state.workouts[state.activeWorkout].exercises[
-					state.activeExercise
-				].reps = newReps;
-				return state;
-			case 'UPDATE_NAME':
-				state.workouts[state.activeWorkout].exercises[
-					state.activeExercise
-				].name = newName;
-				updateLocalStorage(state.workouts);
-				return state;
+			case setWeight:
+				return {
+					...state,
+					...(workouts[activeWorkoutIdx].exercises[activeExerciseIdx].weight =
+						payload),
+				};
+			case setReps:
+				return {
+					...state,
+					...(workouts[activeWorkoutIdx].exercises[activeExerciseIdx].reps =
+						payload),
+				};
+			case setName:
+				return {
+					...state,
+					...(workouts[activeWorkoutIdx].exercises[activeExerciseIdx].name =
+						payload),
+				};
+			case save:
+				updateLocalStorage(workouts);
+				return {
+					...state,
+				};
+
 			default:
 				return state;
 		}
 	}, initialState);
 
-	function setWorkout(workout) {
-		dispatch({
-			type: 'ACTIVE_WORKOUT',
-			workout,
-		});
-	}
-
-	function setExercise(exercise) {
-		dispatch({
-			type: 'ACTIVE_EXERCISE',
-			exercise,
-		});
-	}
-
-	function updateWeight(newWeight) {
-		dispatch({
-			type: 'UPDATE_WEIGHT',
-			newWeight,
-		});
-	}
-
-	function updateReps(newReps) {
-		dispatch({
-			type: 'UPDATE_REPS',
-			newReps,
-		});
-	}
-	function updateName(newName) {
-		dispatch({
-			type: 'UPDATE_NAME',
-			newName,
-		});
-	}
-
 	return (
 		<Provider
 			value={{
 				state,
-				updateName,
-				updateReps,
-				setWorkout,
-				setExercise,
-				updateWeight,
+				dispatch,
 			}}>
 			{children}
 		</Provider>
