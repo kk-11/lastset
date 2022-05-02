@@ -1,12 +1,15 @@
 import React, { createContext, useReducer } from 'react';
 
 import {
+	setWorkoutName,
 	setWorkout,
 	setExercise,
 	setWeight,
 	setReps,
 	setName,
 	save,
+	removeExercise,
+	addExercise,
 } from './constants';
 
 import data from './defaultData.js';
@@ -72,21 +75,31 @@ const StateProvider = ({ children }) => {
 				return {
 					...state,
 				};
-
+			case setWorkoutName:
+				return {
+					...state,
+					...(workouts[activeWorkoutIdx].name = payload),
+				};
+			case addExercise:
+				console.log('here');
+				return {
+					...state,
+					...workouts[activeWorkoutIdx].exercises.push(payload),
+				};
+			case removeExercise:
+				return {
+					...state,
+					...(workouts[activeWorkoutIdx].exercises = workouts[
+						activeWorkoutIdx
+					].exercises.filter((_, i) => i !== activeExerciseIdx)),
+				};
 			default:
 				return state;
 		}
 	}, initialState);
 
-	return (
-		<Provider
-			value={{
-				state,
-				dispatch,
-			}}>
-			{children}
-		</Provider>
-	);
+	const value = { state, dispatch };
+	return <Provider value={value}>{children}</Provider>;
 };
 
 export { StateProvider, store };

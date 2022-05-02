@@ -1,3 +1,9 @@
+export const addWorkout = 'ADD_WORKOUT';
+export const addExercise = 'ADD_EXERCISE';
+export const removeWorkout = 'REMOVE_WORKOUT';
+export const removeExercise = 'REMOVE_EXERCISE';
+
+export const setWorkoutName = 'SET_WORKOUT_NAME';
 export const setWorkout = 'SET_WORKOUT';
 export const setExercise = 'SET_EXERCISE';
 export const setWeight = 'SET_WEIGHT';

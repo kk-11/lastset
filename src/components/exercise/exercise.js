@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { setExercise, setName } from '../../constants';
+import { removeExercise, setExercise, setName } from '../../constants';
 
 import { store } from '../../context';
 
@@ -21,11 +21,21 @@ export default function Exercise({ data, active }) {
 			});
 		}
 	};
-
+	const handleRemove = () => {
+		alert('Sure you want to remove');
+		// ....
+		dispatch({
+			type: removeExercise,
+			payload: activeExerciseIdx,
+		});
+	};
 	if (!active) return null;
 
 	return (
 		<div className={s.wrapper}>
+			<button className={s.remove} onClick={handleRemove}>
+				x
+			</button>
 			<textarea
 				className={s.title}
 				onChange={(evt) =>

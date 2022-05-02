@@ -2,8 +2,18 @@ last set
 
 ## To do:
 
-    - consolidate service and app to one repo
-        - unless that's going to make deployment a nightmare. hmmmmm
-    - finish frontend login and test endpoint
-    - Add/edit note
-    - Weight increment
+    - Add exercise.
+    - Remove exercise.
+    - Add Workout
+    - Remove Workout
+    - Toggle Weight Unit
+    - No weight edge case
+        - seconds?
+    - Login
+    - User database w/ login
+    - Bypass login with warning for localstorage.
+    - Timer
+    - Settings.
+        - Default timer duration
+        - Default units.
+        - Set up account.

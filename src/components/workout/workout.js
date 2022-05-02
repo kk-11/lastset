@@ -1,8 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import classnames from 'classnames';
 import { store } from '../../context';
-import { setExercise, setWorkout } from '../../constants';
+import { setWorkoutName, setExercise, setWorkout } from '../../constants';
 
+import AddExerciseModal from '../addExerciseModal/addExerciseModal';
 import Exercise from '../exercise/exercise';
 
 import s from './workout.module.scss';
@@ -10,6 +11,7 @@ import s from './workout.module.scss';
 export default function Workout({ data }) {
 	const { name, exercises } = data;
 	const { state, dispatch } = useContext(store);
+	const [open, setOpen] = useState(false);
 	const { activeExerciseIdx, activeWorkoutIdx, workouts } = state;
 
 	const handleExerciseClick = (i) =>
@@ -38,7 +40,18 @@ export default function Workout({ data }) {
 			<div className={s.workout}>
 				{activeExerciseIdx === null ? (
 					<>
-						<h2 className={s.title}>{name}</h2>
+						<textarea
+							className={s.title}
+							onChange={(evt) =>
+								dispatch({
+									type: setWorkoutName,
+									payload: evt.target.value,
+								})
+							}
+							placeholder={name}
+							value={name}>
+							{name}
+						</textarea>
 						{exercises.map(({ name, weight, reps }, idx) => (
 							<button
 								key={name}
@@ -49,6 +62,7 @@ export default function Workout({ data }) {
 								{reps !== null && <div>{reps} reps</div>}
 							</button>
 						))}
+						<button onClick={() => setOpen(true)}>+</button>
 					</>
 				) : (
 					<div className={s.exercises}>
@@ -67,6 +81,7 @@ export default function Workout({ data }) {
 				className={classnames(s.nextPrev, last && s.hide)}>
 				next
 			</button>
+			<AddExerciseModal open={open} closeModal={() => setOpen(false)} />
 		</div>
 	);
 }

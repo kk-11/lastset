@@ -6,9 +6,7 @@ import s from './weight.module.scss';
 
 // const kgToLbs = 2.20462;
 export default function Weight({ weight }) {
-	const { dispatch, state } = useContext(store);
-
-	console.log(state);
+	const { dispatch } = useContext(store);
 	const increment = (x) => {
 		dispatch({
 			type: setWeight,
