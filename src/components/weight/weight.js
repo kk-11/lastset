@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { setWeight } from '../../constants';
+import { store } from '../../context';
 
 import s from './weight.module.scss';
 
 // const kgToLbs = 2.20462;
-export default function Weight({ weight, increment }) {
+export default function Weight({ weight }) {
+	const { dispatch, state } = useContext(store);
+
+	console.log(state);
+	const increment = (x) => {
+		dispatch({
+			type: setWeight,
+			payload: weight + x,
+		});
+	};
 	return (
 		<div className={s.wrapper}>
 			<button className={s.btn} onClick={() => increment(-1)}>

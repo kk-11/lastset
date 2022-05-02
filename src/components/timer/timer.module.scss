@@ -1,0 +1,15 @@
+.wrapper {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 20px;
+	width: 100%;
+	background-color: rebeccapurple;
+	transition: transform 15s;
+	transform-origin: left;
+	transition-timing-function: linear;
+	transform: scaleX(0);
+	&.active {
+		transform: scaleX(1);
+	}
+}

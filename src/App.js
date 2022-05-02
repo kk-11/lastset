@@ -1,34 +1,71 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { save, setExercise, setWorkout } from './constants';
+import { store } from './context';
 
-import { store } from './store';
-
-import WorkoutView from './components/workoutView/workoutView';
-import Login from './components/login/login';
+import Workout from './components/workout/workout';
+import Timer from './components/timer/timer';
+// import Login from './components/login/login';
 
 import s from './App.module.scss';
 
 const App = () => {
-	const { user, setWorkout, state } = useContext(store);
-	const { workouts, activeWorkout } = state;
-	const handleClick = (i) => {
-		setWorkout(i);
+	const { state, dispatch } = useContext(store);
+	const { workouts, activeExerciseIdx, activeWorkoutIdx } = state;
+
+	const handleWorkoutClick = (i) => {
+		dispatch({
+			type: setWorkout,
+			payload: i,
+		});
 	};
 
-	if (!user) return <Login />;
+	useEffect(() => {
+		window.addEventListener('beforeunload', () => {
+			dispatch({
+				type: save,
+			});
+		});
 
+		window.addEventListener('keydown', (evt) => {
+			switch (evt.key) {
+				case 'Escape':
+					console.log(activeWorkoutIdx, activeExerciseIdx);
+					// if (activeWorkoutIdx !== null && activeExerciseIdx === null) {
+					// 	console.log(activeWorkoutIdx, activeExerciseIdx);
+					// 	dispatch({
+					// 		type: setWorkout,
+					// 		payload: null,
+					// 	});
+					// }
+					if (activeExerciseIdx !== null) {
+						dispatch({
+							type: setExercise,
+							payload: null,
+						});
+					}
+
+					break;
+				default:
+					break;
+			}
+		});
+	});
+
+	// if (!user) return <Login />;
 	return (
 		<div className={s.wrapper}>
-			{activeWorkout === null ? (
+			<Timer />
+			{activeWorkoutIdx === null ? (
 				workouts.map(({ name }, idx) => (
 					<button
 						className={s.workout}
 						key={name}
-						onClick={() => handleClick(idx)}>
+						onClick={() => handleWorkoutClick(idx)}>
 						{name}
 					</button>
 				))
 			) : (
-				<WorkoutView data={workouts[activeWorkout]} />
+				<Workout data={workouts[activeWorkoutIdx]} />
 			)}
 		</div>
 	);

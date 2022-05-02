@@ -1,57 +1,47 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
+import { setExercise, setName } from '../../constants';
 
-import { store } from '../../store';
+import { store } from '../../context';
 
 import Reps from '../reps/reps';
 import Weight from '../weight/weight';
 
 import s from './exercise.module.scss';
 
-export default function Exercise({ data, nextExercise, active }) {
-	const { updateReps, updateWeight, updateName } = useContext(store);
+export default function Exercise({ data, active }) {
+	const { state, dispatch } = useContext(store);
+	const { activeExerciseIdx, activeWorkoutIdx, workouts } = state;
 	const { name, weight, reps } = data;
-	const [tempName, setTempName] = useState(name);
-	const [tempReps, setTempReps] = useState(reps);
-	const [tempWeight, setTempWeight] = useState(weight);
 
-	useEffect(() => {
-		setTempReps(reps);
-		setTempWeight(weight);
-	}, [reps, weight]);
-
-	const incrementReps = (value) => {
-		setTempReps(tempReps + value);
-	};
-
-	const incrementWeight = (value) => {
-		setTempWeight(tempWeight + value);
-	};
-
-	const handleEnter = () => {
-		updateReps(tempReps);
-		updateWeight(tempWeight);
-		updateName(tempName);
-		nextExercise();
+	const nextExercise = () => {
+		if (activeExerciseIdx < workouts[activeWorkoutIdx].exercises.length - 1) {
+			dispatch({
+				type: setExercise,
+				payload: activeExerciseIdx + 1,
+			});
+		}
 	};
 
 	if (!active) return null;
+
 	return (
 		<div className={s.wrapper}>
 			<textarea
 				className={s.title}
-				onChange={(evt) => setTempName(evt.target.value)}
+				onChange={(evt) =>
+					dispatch({
+						type: setName,
+						payload: evt.target.value,
+					})
+				}
 				placeholder={name}
-				value={tempName}
+				value={name}
 			/>
 
-			{tempWeight !== null && (
-				<Weight weight={tempWeight} increment={incrementWeight} />
-			)}
-			{tempReps !== null && (
-				<Reps reps={tempReps} increment={incrementReps} />
-			)}
+			{weight !== null && <Weight weight={weight} />}
+			{reps !== null && <Reps reps={reps} />}
 
-			<button className={s.btn} onClick={handleEnter}>
+			<button className={s.btn} onClick={() => nextExercise()}>
 				Enter
 			</button>
 		</div>
