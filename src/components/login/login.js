@@ -1,37 +1,37 @@
-import React from 'react';
-const prestate = {
-	email: '',
-	password: '',
-	errors: {},
-};
+import React, { useState } from 'react';
+import s from './login.module.scss';
 
 export default function Login() {
-	const handleChange = (e) => {
-		this.setState({ [e.target.id]: e.target.value });
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+
+	const handleEmail = (e) => {
+		setEmail(e.target.value);
 	};
+
+	const handlePassword = (e) => {
+		setPassword(e.target.value);
+	};
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		const userData = {
-			email: '',
-			password: '',
-		};
 	};
 
 	return (
 		<>
 			<h4>Login below</h4>
-			<form noValidate onSubmit={handleSubmit}>
+			<form noValidate onSubmit={handleSubmit} className={s.form}>
 				<label htmlFor="email">Email</label>
 				<input
-					onChange={handleChange}
-					value={'this.state.email'}
-					id="email"
+					className={s.input}
+					onChange={handleEmail}
+					value={email}
 					type="email"
 				/>
 				<input
-					onChange={handleChange}
-					value={'this.state.password'}
-					id="password"
+					className={s.input}
+					onChange={handlePassword}
+					value={password}
 					type="password"
 				/>
 				<label htmlFor="password">Password</label>
