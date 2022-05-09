@@ -4,6 +4,8 @@ import { store } from './context';
 
 import Workout from './components/workout/workout';
 import Timer from './components/timer/timer';
+import Burger from './components/burger/burger';
+import Menu from './components/menu/menu';
 import AddWorkoutModal from './components/addWorkoutModal/addWorkoutModal';
 // import Login from './components/login/login';
 
@@ -44,7 +46,9 @@ const App = () => {
 	// if (!user) return <Login />;
 	return (
 		<div className={s.wrapper}>
-			<Timer />
+			<Burger />
+			<Menu />
+			{/* <Timer /> */}
 
 			{activeWorkoutIdx === null ? (
 				<>

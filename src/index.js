@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { StateProvider } from './context';
+import { StateProvider, initialState } from './context';
 import App from './App';
 
 import './reset.css';
 import './index.css';
 
 ReactDOM.render(
-	<StateProvider>
+	<StateProvider initialState={initialState}>
 		<App />
 	</StateProvider>,
 	document.getElementById('root')

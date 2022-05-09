@@ -9,6 +9,8 @@ last set
     - Toggle Weight Unit
     - No weight edge case
         - seconds?
+        - How to add weight.
+        - what about running
     - close modal on click outside
     - Login
     - User database w/ login
@@ -18,3 +20,4 @@ last set
         - Default timer duration
         - Default units.
         - Set up account.
+    - meditiation timer.

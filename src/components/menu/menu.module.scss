@@ -1,0 +1,21 @@
+.wrapper {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100vw;
+	background-color: rebeccapurple;
+	transition: transform 333ms;
+	transform: translateX(-100%);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	&.active {
+		transform: translateX(0);
+	}
+	.item {
+		color: white;
+		margin-top: 20px;
+	}
+}

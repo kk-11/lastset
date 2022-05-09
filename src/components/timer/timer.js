@@ -7,5 +7,6 @@ export default function Timer() {
 	useEffect(() => {
 		setTimer(true);
 	}, [setTimer]);
-	return <div className={classNames([s.wrapper, timer && s.active])} />;
+
+	return <div className={classNames([s.wrapper, timer && s.active])}></div>;
 }

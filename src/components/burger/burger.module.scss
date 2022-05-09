@@ -1,0 +1,33 @@
+.wrapper {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	height: 16px;
+	width: 30px;
+	z-index: 999;
+	.line {
+		height: 2px;
+		width: 100%;
+		background-color: rebeccapurple;
+		transition: transform 113ms;
+		position: absolute;
+		transform-origin: center;
+		transition-timing-function: linear;
+		transform: rotate(0deg);
+		&.top {
+			top: 0;
+			&.active {
+				transform: rotate(-45deg) translateY(10px);
+			}
+		}
+		&.bottom {
+			bottom: 0;
+			&.active {
+				transform: rotate(45deg) translateY(-10px);
+			}
+		}
+		&.active {
+			background-color: white;
+		}
+	}
+}

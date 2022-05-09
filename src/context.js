@@ -13,6 +13,7 @@ import {
 	removeExercise,
 	addExercise,
 	addWorkout,
+	toggleMenu,
 } from './constants';
 
 const updateLocalStorage = (data) => {
@@ -27,17 +28,18 @@ if (baseData === null) {
 	baseData = JSON.parse(baseData);
 }
 
-const initialState = {
+export const initialState = {
 	workouts: baseData,
 	activeWorkoutIdx: null,
 	activeExerciseIdx: null,
 	user: undefined,
+	menuOpen: false,
 };
 
-const store = createContext(initialState);
+const store = createContext();
 const { Provider } = store;
 
-const StateProvider = ({ children }) => {
+const StateProvider = ({ children, initialState }) => {
 	const [state, dispatch] = useReducer((state, action) => {
 		const { type, payload } = action || {};
 		const { workouts, activeExerciseIdx, activeWorkoutIdx } = state;
@@ -97,6 +99,11 @@ const StateProvider = ({ children }) => {
 					...(workouts[activeWorkoutIdx].exercises = workouts[
 						activeWorkoutIdx
 					].exercises.filter((_, i) => i !== activeExerciseIdx)),
+				};
+			case toggleMenu:
+				return {
+					...state,
+					menuOpen: payload,
 				};
 			default:
 				return state;
