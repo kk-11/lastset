@@ -1,5 +1,7 @@
 import React, { createContext, useReducer } from 'react';
 
+import data from './defaultData.js';
+
 import {
 	setWorkoutName,
 	setWorkout,
@@ -10,9 +12,8 @@ import {
 	save,
 	removeExercise,
 	addExercise,
+	addWorkout,
 } from './constants';
-
-import data from './defaultData.js';
 
 const updateLocalStorage = (data) => {
 	const stringified = JSON.stringify(data);
@@ -46,6 +47,11 @@ const StateProvider = ({ children }) => {
 				return {
 					...state,
 					activeWorkoutIdx: payload,
+				};
+			case addWorkout:
+				return {
+					...state,
+					...workouts.push(payload),
 				};
 			case setExercise:
 				return {
@@ -81,7 +87,6 @@ const StateProvider = ({ children }) => {
 					...(workouts[activeWorkoutIdx].name = payload),
 				};
 			case addExercise:
-				console.log('here');
 				return {
 					...state,
 					...workouts[activeWorkoutIdx].exercises.push(payload),

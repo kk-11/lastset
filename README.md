@@ -9,6 +9,7 @@ last set
     - Toggle Weight Unit
     - No weight edge case
         - seconds?
+    - close modal on click outside
     - Login
     - User database w/ login
     - Bypass login with warning for localstorage.

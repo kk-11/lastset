@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState, useCallback } from 'react';
 import { save, setExercise, setWorkout } from './constants';
 import { store } from './context';
 
@@ -11,6 +11,7 @@ import s from './App.module.scss';
 
 const App = () => {
 	const { state, dispatch } = useContext(store);
+	const [addWorkoutModalOpen, setAddWorkoutModalOpen] = useState(false);
 	const { workouts, activeExerciseIdx, activeWorkoutIdx } = state;
 
 	const handleWorkoutClick = (i) => {
@@ -26,7 +27,6 @@ const App = () => {
 		// 		type: save,
 		// 	});
 		// });
-
 		window.addEventListener('keydown', (evt) => {
 			switch (evt.key) {
 				case 'Escape':
@@ -34,7 +34,6 @@ const App = () => {
 						type: activeExerciseIdx === null ? setExercise : setWorkout,
 						payload: null,
 					});
-
 					break;
 				default:
 					break;
@@ -57,12 +56,21 @@ const App = () => {
 							{name}
 						</button>
 					))}
-					<button className={s.addWorkout}>+</button>
+					<button
+						className={s.addWorkout}
+						onClick={() => setAddWorkoutModalOpen(true)}>
+						+
+					</button>
 				</>
 			) : (
 				<Workout data={workouts[activeWorkoutIdx]} />
 			)}
-			<AddWorkoutModal />
+			{addWorkoutModalOpen && (
+				<AddWorkoutModal
+					open={addWorkoutModalOpen}
+					closeModal={() => setAddWorkoutModalOpen(false)}
+				/>
+			)}
 		</div>
 	);
 };

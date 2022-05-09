@@ -12,12 +12,17 @@
 		display: block;
 		color: red;
 		opacity: 0.3;
-		content: 'kg';
+		content: 'lbs';
 		top: 0;
 		left: 0;
 		right: 0;
 		font-weight: bold;
 		font-size: 45px;
+	}
+	&.metric {
+		&:after {
+			content: 'kg';
+		}
 	}
 }
 .btn {

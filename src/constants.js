@@ -10,3 +10,5 @@ export const setWeight = 'SET_WEIGHT';
 export const setReps = 'SET_REPS';
 export const setName = 'SET_NAME';
 export const save = 'SAVE';
+
+export const kgToLbs = 2.20462;

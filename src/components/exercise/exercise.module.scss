@@ -1,8 +1,14 @@
 .wrapper {
 	display: flex;
-	flex-direction: column;
 	align-items: center;
+	justify-content: center;
 	position: relative;
+}
+.exercise {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
 }
 
 .title {
@@ -22,7 +28,39 @@
 }
 
 .remove {
+	margin-top: 30px;
+	background-color: red;
+	color: white;
+	padding: 10px;
+}
+
+.nextPrev {
+	border-radius: 10px;
+	background-color: #3d97bb;
+	margin: 0 20px;
+	padding: 5px;
+	&.hide {
+		opacity: 0;
+		pointer-events: none;
+	}
+}
+
+.exit {
 	position: absolute;
-	top: 5px;
-	right: 5px;
+	top: 15px;
+	right: 25px;
+	&:before,
+	&:after {
+		background-color: black;
+		height: 3px;
+		width: 20px;
+		position: absolute;
+		display: block;
+		content: '';
+		transform: rotate(-45deg);
+		transform-origin: center;
+	}
+	&::after {
+		transform: rotate(45deg);
+	}
 }
