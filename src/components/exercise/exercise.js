@@ -16,31 +16,33 @@ export default function Exercise({ data, active }) {
 
 	const amountOfExercises = workouts[activeWorkoutIdx].exercises.length - 1;
 
-	const nextExercise = () => {
-		if (activeExerciseIdx < amountOfExercises) {
-			dispatch({
-				type: setExercise,
-				payload: activeExerciseIdx + 1,
-			});
-		}
-	};
 	const handleRemove = () => {
-		alert('Sure you want to remove');
-		// ....
-		dispatch({
-			type: removeExercise,
-			payload: activeExerciseIdx,
-		});
+		// eslint-disable-next-line no-restricted-globals
+		const confirmed = confirm('Sure you want to remove');
+		if (confirmed) {
+			dispatch({
+				type: removeExercise,
+				payload: activeExerciseIdx,
+			});
+			if (activeExerciseIdx === amountOfExercises) {
+				handleExerciseChange(-1);
+			}
+		}
 	};
 
 	const first = activeExerciseIdx === 0;
 	const last = activeExerciseIdx === amountOfExercises;
 
 	const handleExerciseChange = (inc) => {
-		dispatch({
-			type: setExercise,
-			payload: activeExerciseIdx + inc,
-		});
+		if (
+			activeExerciseIdx + inc >= 0 &&
+			activeExerciseIdx + inc <= amountOfExercises
+		) {
+			dispatch({
+				type: setExercise,
+				payload: activeExerciseIdx + inc,
+			});
+		}
 	};
 
 	if (!active) return null;
@@ -77,7 +79,7 @@ export default function Exercise({ data, active }) {
 				{weight !== null && <Weight weight={weight} />}
 				{reps !== null && <Reps reps={reps} />}
 
-				<button className={s.btn} onClick={() => nextExercise()}>
+				<button className={s.btn} onClick={() => handleExerciseChange(+1)}>
 					Enter
 				</button>
 				<button className={s.remove} onClick={handleRemove}>

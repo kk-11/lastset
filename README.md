@@ -2,7 +2,7 @@ last set
 
 ## To do:
 
-    - Add exercise.
+    - Add exercise. ✓
     - Remove exercise.
     - Add Workout
     - Remove Workout
