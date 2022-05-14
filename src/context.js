@@ -1,25 +1,9 @@
 import React, { createContext, useReducer } from 'react';
 
 import data from './defaultData.js';
+import { updateLocalStorage } from './utils/updateLocalStorage.js';
 
-import {
-	setWorkoutName,
-	setWorkout,
-	setExercise,
-	setWeight,
-	setReps,
-	setName,
-	save,
-	removeExercise,
-	addExercise,
-	addWorkout,
-	toggleMenu,
-} from './constants';
-
-const updateLocalStorage = (data) => {
-	const stringified = JSON.stringify(data);
-	window.localStorage.setItem('lastSetWTF', stringified);
-};
+import { reducer } from './reducer';
 
 let baseData = window.localStorage.getItem('lastSetWTF');
 if (baseData === null) {
@@ -40,75 +24,7 @@ const store = createContext();
 const { Provider } = store;
 
 const StateProvider = ({ children, initialState }) => {
-	const [state, dispatch] = useReducer((state, action) => {
-		const { type, payload } = action || {};
-		const { workouts, activeExerciseIdx, activeWorkoutIdx } = state;
-
-		switch (type) {
-			case setWorkout:
-				return {
-					...state,
-					activeWorkoutIdx: payload,
-				};
-			case addWorkout:
-				return {
-					...state,
-					...workouts.push(payload),
-				};
-			case setExercise:
-				return {
-					...state,
-					activeExerciseIdx: payload,
-				};
-			case setWeight:
-				return {
-					...state,
-					...(workouts[activeWorkoutIdx].exercises[activeExerciseIdx].weight =
-						payload),
-				};
-			case setReps:
-				return {
-					...state,
-					...(workouts[activeWorkoutIdx].exercises[activeExerciseIdx].reps =
-						payload),
-				};
-			case setName:
-				return {
-					...state,
-					...(workouts[activeWorkoutIdx].exercises[activeExerciseIdx].name =
-						payload),
-				};
-			case save:
-				updateLocalStorage(workouts);
-				return {
-					...state,
-				};
-			case setWorkoutName:
-				return {
-					...state,
-					...(workouts[activeWorkoutIdx].name = payload),
-				};
-			case addExercise:
-				return {
-					...state,
-					...workouts[activeWorkoutIdx].exercises.push(payload),
-				};
-			case removeExercise:
-				return {
-					...state,
-					...(workouts[activeWorkoutIdx].exercises = workouts[
-						activeWorkoutIdx
-					].exercises.filter((_, i) => i !== activeExerciseIdx)),
-				};
-			case toggleMenu:
-				return {
-					...state,
-					menuOpen: payload,
-				};
-			default:
-				return state;
-		}
-	}, initialState);
+	const [state, dispatch] = useReducer(reducer, initialState);
 
 	const value = { state, dispatch };
 	return <Provider value={value}>{children}</Provider>;
