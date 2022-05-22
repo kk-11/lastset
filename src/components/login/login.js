@@ -18,8 +18,8 @@ export default function Login() {
 	};
 
 	return (
-		<>
-			<h4>Login below</h4>
+		<div className={s.wrapper}>
+			<h4>Sign in to get regular backups</h4>
 			<form noValidate onSubmit={handleSubmit} className={s.form}>
 				<label htmlFor="email">Email</label>
 				<input
@@ -28,15 +28,15 @@ export default function Login() {
 					value={email}
 					type="email"
 				/>
+				<label htmlFor="password">Password</label>
 				<input
 					className={s.input}
 					onChange={handlePassword}
 					value={password}
 					type="password"
 				/>
-				<label htmlFor="password">Password</label>
 				<button type="submit">Login</button>
 			</form>
-		</>
+		</div>
 	);
 }

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useCallback } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { save, setExercise, setWorkout } from './constants';
 import { store } from './context';
 
@@ -7,14 +7,14 @@ import Timer from './components/timer/timer';
 import Burger from './components/burger/burger';
 import Menu from './components/menu/menu';
 import AddWorkoutModal from './components/addWorkoutModal/addWorkoutModal';
-// import Login from './components/login/login';
+import Login from './components/login/login';
 
 import s from './App.module.scss';
 
 const App = () => {
 	const { state, dispatch } = useContext(store);
 	const [addWorkoutModalOpen, setAddWorkoutModalOpen] = useState(false);
-	const { workouts, activeExerciseIdx, activeWorkoutIdx } = state;
+	const { user, workouts, activeExerciseIdx, activeWorkoutIdx } = state;
 
 	const handleWorkoutClick = (i) => {
 		dispatch({
@@ -24,16 +24,16 @@ const App = () => {
 	};
 
 	useEffect(() => {
-		// window.addEventListener('beforeunload', () => {
-		// 	dispatch({
-		// 		type: save,
-		// 	});
-		// });
+		window.addEventListener('beforeunload', () => {
+			dispatch({
+				type: save,
+			});
+		});
 		window.addEventListener('keydown', (evt) => {
 			switch (evt.key) {
 				case 'Escape':
 					dispatch({
-						type: activeExerciseIdx === null ? setExercise : setWorkout,
+						type: setWorkout,
 						payload: null,
 					});
 					break;
@@ -48,7 +48,6 @@ const App = () => {
 		<div className={s.wrapper}>
 			<Burger />
 			<Menu />
-			{/* <Timer /> */}
 
 			{activeWorkoutIdx === null ? (
 				<>

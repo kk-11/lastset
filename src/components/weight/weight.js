@@ -12,7 +12,7 @@ export default function Weight({ weight }) {
 	const increment = (x) => {
 		dispatch({
 			type: setWeight,
-			payload: weight + x,
+			payload: +weight + x,
 		});
 	};
 	const converted = isMetric ? weight : weight * kgToLbs;

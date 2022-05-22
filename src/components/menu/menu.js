@@ -9,8 +9,7 @@ export default function Menu() {
 
 	return (
 		<div className={classNames([s.wrapper, menuOpen && s.active])}>
-			<div className={classNames([s.item])}>settings</div>
-			<div className={classNames([s.item])}>timer</div>
+			<button className={classNames([s.item])}>settings</button>
 		</div>
 	);
 }

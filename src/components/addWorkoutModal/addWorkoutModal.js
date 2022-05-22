@@ -2,15 +2,15 @@ import React, { useState, useContext } from 'react';
 import classnames from 'classnames';
 import { store } from '../../context';
 import Modal from '../modal/modal';
-import { addWorkout } from '../../constants';
+import { addWorkout, setWorkout } from '../../constants';
 import s from './addWorkoutModal.module.scss';
 import { AddExercisePanel } from '../addExercise/addExercise';
 
 export default function AddWorkoutModal({ open, closeModal }) {
-	const { dispatch } = useContext(store);
+	const { state, dispatch } = useContext(store);
 	const [newWorkoutName, setNewWorkoutName] = useState('');
 	const [addExercises, setAddExercises] = useState(false);
-
+	console.log(state.workouts.length);
 	return (
 		<Modal open={open} closeModal={closeModal}>
 			<div
@@ -29,6 +29,10 @@ export default function AddWorkoutModal({ open, closeModal }) {
 								dispatch({
 									type: addWorkout,
 									payload: { name: newWorkoutName, exercises: [] },
+								});
+								dispatch({
+									type: setWorkout,
+									payload: state.workouts.length - 1,
 								});
 								setAddExercises(true);
 							}}>

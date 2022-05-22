@@ -76,7 +76,11 @@ export default function Exercise({ data, active }) {
 					value={name}
 				/>
 
-				{weight !== null && <Weight weight={weight} />}
+				{weight !== null ? (
+					<Weight weight={weight} />
+				) : (
+					<button>add weight</button>
+				)}
 				{reps !== null && <Reps reps={reps} />}
 
 				<button className={s.btn} onClick={() => handleExerciseChange(+1)}>

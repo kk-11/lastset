@@ -1,7 +1,39 @@
+.wrapper {
+	width: 300px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	height: 100vh;
+	margin: auto;
+	h4 {
+		font-weight: 800;
+		text-transform: uppercase;
+	}
+}
+
 .form {
 	display: flex;
+	border-radius: 1.618em;
+	border: 1px solid rgba($color: #e3e3e3, $alpha: 0.4);
 	flex-direction: column;
+	padding: 1.6em;
+	margin: 3.2em;
+	label {
+		font-size: 0.8em;
+	}
+	button {
+		border-radius: 1.618em;
+		font-size: 0.8em;
+		padding: 0.8em;
+
+		border: 1px solid rgba($color: #e3e3e3, $alpha: 0.4);
+		background-color: rgba($color: #e3e3e3, $alpha: 0.4);
+		text-transform: uppercase;
+		font-weight: bold;
+	}
 }
 .input {
-	border: 1px solid red;
+	border: 1px solid rgba($color: #e3e3e3, $alpha: 0.4);
+	margin: 0.681em 0;
 }
