@@ -18,6 +18,7 @@ export const initialState = {
 	activeExerciseIdx: null,
 	user: undefined,
 	menuOpen: false,
+	useMetric: true,
 };
 
 const store = createContext();

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { store } from '../../context';
-import { setWorkoutName, setExercise } from '../../constants';
+import { setWorkoutName, setExercise, kgToLbs } from '../../constants';
 
 import AddExercise from '../addExercise/addExercise';
 import Exercise from '../exercise/exercise';
@@ -11,7 +11,7 @@ export default function Workout({ data }) {
 	const { name, exercises } = data;
 	const { state, dispatch } = useContext(store);
 	const [addExerciseModalOpen, setAddExerciseModalOpen] = useState(false);
-	const { activeExerciseIdx, workouts } = state;
+	const { activeExerciseIdx, workouts, useMetric } = state;
 
 	const handleExerciseClick = (i) =>
 		dispatch({
@@ -36,20 +36,29 @@ export default function Workout({ data }) {
 						{name}
 					</textarea>
 					{exercises.length > 0 ? (
-						exercises.map(({ name, weight, reps }, idx) => (
-							<button
-								key={name}
-								className={s.exercise}
-								onClick={() => handleExerciseClick(idx)}>
-								<div className={s.name}>{name}</div>
-								{weight !== null && <div>{weight} kg</div>}
-								{reps !== null && <div>{reps} reps</div>}
-							</button>
-						))
+						exercises.map(({ name, weight, reps }, idx) => {
+							const converted = useMetric ? weight : weight * kgToLbs;
+							return (
+								<button
+									key={name}
+									className={s.exercise}
+									onClick={() => handleExerciseClick(idx)}>
+									<div className={s.name}>{name}</div>
+									{weight !== null && (
+										<div>
+											{Math.round(converted)} {useMetric ? 'kg' : 'lbs'}
+										</div>
+									)}
+									{reps !== null && <div>{reps} reps</div>}
+								</button>
+							);
+						})
 					) : (
 						<div>
 							<p>no exercises</p>
-							<button>add exercise</button>
+							<button onClick={() => setAddExerciseModalOpen(true)}>
+								add exercise
+							</button>
 						</div>
 					)}
 					<button

@@ -14,7 +14,7 @@ const App = () => {
 	return (
 		<main className={s.wrapper}>
 			<Login />
-			<TestSuite />
+			{/* <TestSuite /> */}
 			<Burger />
 			<Menu />
 			<Workouts />

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import classnames from 'classnames';
 import { kgToLbs } from '../../constants';
 import { setWeight } from '../../constants';
@@ -7,15 +7,23 @@ import { store } from '../../context';
 import s from './weight.module.scss';
 
 export default function Weight({ weight }) {
-	const { dispatch } = useContext(store);
-	const [isMetric, setIsMetric] = useState(true);
+	const { state, dispatch } = useContext(store);
+	const { useMetric } = state;
+	const [isMetric, setIsMetric] = useState(useMetric);
+
+	useEffect(() => {
+		setIsMetric(useMetric);
+	}, [useMetric]);
+
 	const increment = (x) => {
 		dispatch({
 			type: setWeight,
 			payload: +weight + x,
 		});
 	};
+
 	const converted = isMetric ? weight : weight * kgToLbs;
+
 	return (
 		<div className={s.wrapper}>
 			<button className={s.btn} onClick={() => increment(-1)}>
@@ -23,8 +31,8 @@ export default function Weight({ weight }) {
 			</button>
 			<h3
 				className={classnames(s.weight, isMetric && s.metric)}
-				onMouseDown={() => setIsMetric(!isMetric)}
-				onMouseUp={() => setIsMetric(!isMetric)}>
+				onTouchStart={() => setIsMetric(!isMetric)}
+				onTouchEnd={() => setIsMetric(!isMetric)}>
 				{Math.round(converted)}
 			</h3>
 			<button className={s.btn} onClick={() => increment(+1)}>

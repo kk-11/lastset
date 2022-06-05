@@ -11,6 +11,7 @@ import {
 	addExercise,
 	addWorkout,
 	toggleMenu,
+	toggleMetric,
 } from './constants';
 import { updateLocalStorage } from './utils/updateLocalStorage.js';
 
@@ -75,7 +76,6 @@ export const reducer = (state, action) => {
 				].exercises.filter((_, i) => i !== activeExerciseIdx)),
 			};
 		case removeWorkout:
-			console.log(workouts);
 			return {
 				...state,
 				workouts: workouts.filter((workout) => {
@@ -83,11 +83,15 @@ export const reducer = (state, action) => {
 					return workout.name !== payload.name;
 				}),
 			};
-
 		case toggleMenu:
 			return {
 				...state,
 				menuOpen: payload,
+			};
+		case toggleMetric:
+			return {
+				...state,
+				useMetric: payload,
 			};
 		default:
 			return state;
