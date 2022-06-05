@@ -4,7 +4,7 @@ import { save, setWorkout } from '../constants';
 
 export const useEventListeners = () => {
 	const { state, dispatch } = useContext(store);
-	const { activeExerciseIdx } = state;
+	const { exerciseIdx } = state;
 	useEffect(() => {
 		// window.addEventListener('beforeunload', () => {
 		// 	dispatch({
@@ -23,5 +23,5 @@ export const useEventListeners = () => {
 					break;
 			}
 		});
-	}, [activeExerciseIdx, dispatch]);
+	}, [exerciseIdx, dispatch]);
 };

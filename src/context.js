@@ -1,7 +1,7 @@
 import React, { createContext, useReducer } from 'react';
 
 import data from './data.js';
-import { updateLocalStorage } from './utils/updateLocalStorage.js';
+// import { updateLocalStorage } from './utils/updateLocalStorage.js';
 
 import { reducer } from './reducer';
 
@@ -14,9 +14,10 @@ import { reducer } from './reducer';
 
 export const initialState = {
 	workouts: JSON.parse(window.localStorage.getItem('lastSetWTF')) || data,
-	activeWorkoutIdx: null,
-	activeExerciseIdx: null,
+	workoutIdx: null,
+	exerciseIdx: null,
 	user: undefined,
+	signUpDismissed: false,
 	menuOpen: false,
 	useMetric: true,
 };

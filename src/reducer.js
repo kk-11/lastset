@@ -12,18 +12,19 @@ import {
 	addWorkout,
 	toggleMenu,
 	toggleMetric,
+	toggleSignUp,
 } from './constants';
 import { updateLocalStorage } from './utils/updateLocalStorage.js';
 
 export const reducer = (state, action) => {
 	const { type, payload } = action || {};
-	const { workouts, activeExerciseIdx, activeWorkoutIdx } = state;
+	const { workouts, exerciseIdx, workoutIdx } = state;
 
 	switch (type) {
 		case setWorkout:
 			return {
 				...state,
-				activeWorkoutIdx: payload,
+				workoutIdx: payload,
 			};
 		case addWorkout:
 			return {
@@ -33,25 +34,22 @@ export const reducer = (state, action) => {
 		case setExercise:
 			return {
 				...state,
-				activeExerciseIdx: payload,
+				exerciseIdx: payload,
 			};
 		case setWeight:
 			return {
 				...state,
-				...(workouts[activeWorkoutIdx].exercises[activeExerciseIdx].weight =
-					payload),
+				...(workouts[workoutIdx].exercises[exerciseIdx].weight = payload),
 			};
 		case setReps:
 			return {
 				...state,
-				...(workouts[activeWorkoutIdx].exercises[activeExerciseIdx].reps =
-					payload),
+				...(workouts[workoutIdx].exercises[exerciseIdx].reps = payload),
 			};
 		case setName:
 			return {
 				...state,
-				...(workouts[activeWorkoutIdx].exercises[activeExerciseIdx].name =
-					payload),
+				...(workouts[workoutIdx].exercises[exerciseIdx].name = payload),
 			};
 		case save:
 			updateLocalStorage(workouts);
@@ -61,19 +59,19 @@ export const reducer = (state, action) => {
 		case setWorkoutName:
 			return {
 				...state,
-				...(workouts[activeWorkoutIdx].name = payload),
+				...(workouts[workoutIdx].name = payload),
 			};
 		case addExercise:
 			return {
 				...state,
-				...workouts[activeWorkoutIdx].exercises.push(payload),
+				...workouts[workoutIdx].exercises.push(payload),
 			};
 		case removeExercise:
 			return {
 				...state,
-				...(workouts[activeWorkoutIdx].exercises = workouts[
-					activeWorkoutIdx
-				].exercises.filter((_, i) => i !== activeExerciseIdx)),
+				...(workouts[workoutIdx].exercises = workouts[
+					workoutIdx
+				].exercises.filter((_, i) => i !== exerciseIdx)),
 			};
 		case removeWorkout:
 			return {
@@ -92,6 +90,11 @@ export const reducer = (state, action) => {
 			return {
 				...state,
 				useMetric: payload,
+			};
+		case toggleSignUp:
+			return {
+				...state,
+				signUpDismissed: payload,
 			};
 		default:
 			return state;

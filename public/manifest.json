@@ -1,6 +1,6 @@
 {
-	"short_name": "lastSetWTF",
-	"name": "lastSetWTF",
+	"short_name": "Last Set",
+	"name": "Last Set",
 	"start_url": ".",
 	"display": "standalone",
 	"theme_color": "#fff",

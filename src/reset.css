@@ -3,6 +3,17 @@
    License: none (public domain)
 */
 
+* {
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Old versions of Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none;
+	touch-action: manipulation;
+	overscroll-behavior: none;
+}
+
 html,
 body,
 div,
@@ -440,6 +451,12 @@ fieldset {
 
 textarea {
 	resize: vertical;
+	-webkit-touch-callout: text; /* iOS Safari */
+	-webkit-user-select: text; /* Safari */
+	-khtml-user-select: text; /* Konqueror HTML */
+	-moz-user-select: text; /* Old versions of Firefox */
+	-ms-user-select: text; /* Internet Explorer/Edge */
+	user-select: text;
 }
 
 .chromeframe {
@@ -447,15 +464,4 @@ textarea {
 	background: #ccc;
 	color: #000;
 	padding: 0.2em 0;
-}
-
-* {
-	-webkit-touch-callout: none; /* iOS Safari */
-	-webkit-user-select: none; /* Safari */
-	-khtml-user-select: none; /* Konqueror HTML */
-	-moz-user-select: none; /* Old versions of Firefox */
-	-ms-user-select: none; /* Internet Explorer/Edge */
-	user-select: none;
-	touch-action: manipulation;
-	overscroll-behavior: none;
 }

@@ -12,6 +12,7 @@ export const setName = 'SET_NAME';
 export const save = 'SAVE';
 export const toggleMenu = 'TOGGLE_MENU';
 export const toggleMetric = 'TOGGLE_METRIC';
+export const toggleSignUp = 'TOGGLE_SIGN_UP';
 
 // KG -> LBS
 export const kgToLbs = 2.20462;
