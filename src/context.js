@@ -1,6 +1,6 @@
 import React, { createContext, useReducer } from 'react';
 
-import data from './defaultData.js';
+import data from './data.js';
 import { updateLocalStorage } from './utils/updateLocalStorage.js';
 
 import { reducer } from './reducer';

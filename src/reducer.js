@@ -7,6 +7,7 @@ import {
 	setName,
 	save,
 	removeExercise,
+	removeWorkout,
 	addExercise,
 	addWorkout,
 	toggleMenu,
@@ -14,6 +15,7 @@ import {
 import { updateLocalStorage } from './utils/updateLocalStorage.js';
 
 export const reducer = (state, action) => {
+	console.log(action);
 	const { type, payload } = action || {};
 	const { workouts, activeExerciseIdx, activeWorkoutIdx } = state;
 
@@ -73,6 +75,16 @@ export const reducer = (state, action) => {
 					activeWorkoutIdx
 				].exercises.filter((_, i) => i !== activeExerciseIdx)),
 			};
+		case removeWorkout:
+			console.log(workouts);
+			return {
+				...state,
+				workouts: workouts.filter((workout) => {
+					console.log(workout.name, payload.name);
+					return workout.name !== payload.name;
+				}),
+			};
+
 		case toggleMenu:
 			return {
 				...state,
