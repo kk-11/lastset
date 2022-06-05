@@ -1,13 +1,16 @@
 import React, { useContext, useState } from 'react';
+import classnames from 'classnames';
 import { store } from '../../context';
 import Workout from '../workout/workout';
-import { setWorkout } from '../../constants';
+import { setWorkout, removeWorkout } from '../../constants';
 import AddWorkoutModal from '../addWorkoutModal/addWorkoutModal';
 import s from './workouts.module.scss';
 
 export default function Workouts() {
+	let timer;
 	const { state, dispatch } = useContext(store);
 	const [addWorkoutModalOpen, setAddWorkoutModalOpen] = useState(false);
+	const [showDeleteButtons, setShowDeleteButtons] = useState(false);
 	const { workouts, activeWorkoutIdx } = state;
 
 	const handleWorkoutClick = (i) => {
@@ -17,17 +20,41 @@ export default function Workouts() {
 		});
 	};
 
+	const handleTouchStart = () => {
+		timer = setTimeout(() => setShowDeleteButtons(true), 1618);
+	};
+	const handleTouchEnd = () => {
+		if (timer) clearTimeout(timer);
+	};
+
 	return (
 		<div className={s.wrapper}>
 			{!workouts[activeWorkoutIdx] || activeWorkoutIdx === null ? (
 				<>
 					{workouts.map(({ name }, idx) => (
-						<button
-							key={name}
-							className={s.workout}
-							onClick={() => handleWorkoutClick(idx)}>
-							{name}
-						</button>
+						<div key={name} className={s.workoutButtons}>
+							<button
+								className={classnames([
+									s.workout,
+									showDeleteButtons && s.shake,
+								])}
+								onTouchStart={() => handleTouchStart()}
+								onTouchEnd={() => handleTouchEnd()}
+								onClick={() => handleWorkoutClick(idx)}>
+								{name}
+							</button>
+							{showDeleteButtons && (
+								<button
+									className={s.deleteWorkoutX}
+									onClick={() =>
+										dispatch({
+											type: removeWorkout,
+											payload: { name },
+										})
+									}
+								/>
+							)}
+						</div>
 					))}
 					<button
 						className={s.addWorkout}

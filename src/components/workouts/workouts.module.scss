@@ -9,8 +9,70 @@
 	overscroll-behavior: none;
 }
 
-.workout {
-	padding: 20px 30px;
-	background-color: rgba($color: #3d97bb, $alpha: 0.1);
-	margin-bottom: 2rem;
+.workoutButtons {
+	position: relative;
+	.workout {
+		padding: 20px 30px;
+		background-color: rgba($color: #3d97bb, $alpha: 0.1);
+		margin-bottom: 2rem;
+		&.shake {
+			background-color: red;
+			animation-name: shake;
+			animation-duration: 2s;
+			animation-fill-mode: both;
+			animation-iteration-count: infinite;
+		}
+	}
+	.deleteWorkoutX {
+		position: absolute;
+		transform: translateX(20px);
+		top: 33%;
+		&:before,
+		&:after {
+			background-color: black;
+			height: 3px;
+			width: 20px;
+			position: absolute;
+			display: block;
+			content: '';
+			transform: rotate(-45deg);
+			transform-origin: center;
+		}
+		&::after {
+			transform: rotate(45deg);
+		}
+	}
+}
+
+@keyframes shake {
+	0%,
+	100% {
+		transform: translateX(0) rotate(0deg) translateY(0);
+	}
+	15%,
+	35%,
+	55%,
+	75%,
+	95% {
+		transform: translateX(-1px) rotate(-2deg);
+	}
+	25%,
+	45%,
+	65%,
+	85% {
+		transform: translateX(1px) rotate(2deg);
+	}
+	10%,
+	30%,
+	50%,
+	70%,
+	90% {
+		transform: translateY(1px);
+	}
+	20%,
+	40%,
+	60%,
+	80% {
+		transform: translateY(-1px);
+	}
 }

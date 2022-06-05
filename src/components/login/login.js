@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { store } from '../../context';
 import s from './login.module.scss';
 
 export default function Login() {
+	const { state } = useContext(store);
+
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
@@ -16,7 +19,7 @@ export default function Login() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 	};
-
+	return null;
 	return (
 		<div className={s.wrapper}>
 			<h4>Sign in to get regular backups</h4>

@@ -15,7 +15,6 @@ import {
 import { updateLocalStorage } from './utils/updateLocalStorage.js';
 
 export const reducer = (state, action) => {
-	console.log(action);
 	const { type, payload } = action || {};
 	const { workouts, activeExerciseIdx, activeWorkoutIdx } = state;
 
