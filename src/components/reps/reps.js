@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { setReps } from '../../constants';
 import { store } from '../../context';
 
+import Button from '../../ui/button';
+
 import s from './reps.module.scss';
 
 export default function Reps({ reps }) {
@@ -12,15 +14,13 @@ export default function Reps({ reps }) {
 			payload: reps + x,
 		});
 	};
+
+	if (reps < 1) return null;
 	return (
 		<div className={s.wrapper}>
-			<button className={s.btn} onClick={() => increment(-1)}>
-				-
-			</button>
+			<Button className={s.btn} onClick={() => increment(-1)} label="-" />
 			<h3 className={s.reps}>{reps}</h3>
-			<button className={s.btn} onClick={() => increment(+1)}>
-				+
-			</button>
+			<Button className={s.btn} onClick={() => increment(+1)} label="+" />
 		</div>
 	);
 }

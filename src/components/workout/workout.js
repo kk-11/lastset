@@ -2,8 +2,9 @@ import React, { useContext, useState } from 'react';
 import { store } from '../../context';
 import { setWorkoutName, setExercise, kgToLbs } from '../../constants';
 
-import AddExercise from '../addExercise/addExercise';
-import Exercise from '../exercise/exercise';
+import { AddExercise, Exercise } from '../';
+
+import Button from '../../ui/button';
 
 import s from './workout.module.scss';
 
@@ -11,7 +12,7 @@ export default function Workout({ data }) {
 	const { name, exercises } = data;
 	const { state, dispatch } = useContext(store);
 	const [addExerciseModalOpen, setAddExerciseModalOpen] = useState(false);
-	const { activeExerciseIdx, workouts, useMetric } = state;
+	const { exerciseIdx, workouts, useMetric } = state;
 
 	const handleExerciseClick = (i) =>
 		dispatch({
@@ -21,7 +22,7 @@ export default function Workout({ data }) {
 
 	return (
 		<>
-			{activeExerciseIdx === null ? (
+			{exerciseIdx === null ? (
 				<div className={s.workout}>
 					<textarea
 						className={s.title}
@@ -39,33 +40,36 @@ export default function Workout({ data }) {
 						exercises.map(({ name, weight, reps }, idx) => {
 							const converted = useMetric ? weight : weight * kgToLbs;
 							return (
-								<button
+								<Button
 									key={name}
 									className={s.exercise}
 									onClick={() => handleExerciseClick(idx)}>
 									<div className={s.name}>{name}</div>
-									{weight !== null && (
+									{weight !== null && weight !== undefined && weight > 0 && (
 										<div>
 											{Math.round(converted)} {useMetric ? 'kg' : 'lbs'}
 										</div>
 									)}
-									{reps !== null && <div>{reps} reps</div>}
-								</button>
+									{reps !== null && reps !== undefined && reps > 0 && (
+										<div>{reps} reps</div>
+									)}
+								</Button>
 							);
 						})
 					) : (
 						<div>
 							<p>no exercises</p>
-							<button onClick={() => setAddExerciseModalOpen(true)}>
-								add exercise
-							</button>
+							<Button
+								onClick={() => setAddExerciseModalOpen(true)}
+								label="add exercise"
+							/>
 						</div>
 					)}
-					<button
+					<Button
 						className={s.addExerciseBtn}
-						onClick={() => setAddExerciseModalOpen(true)}>
-						+
-					</button>
+						onClick={() => setAddExerciseModalOpen(true)}
+						label="+"
+					/>
 				</div>
 			) : (
 				<div className={s.exercises}>
@@ -74,13 +78,13 @@ export default function Workout({ data }) {
 							<Exercise
 								data={exercise}
 								key={idx}
-								active={idx === activeExerciseIdx}
+								active={idx === exerciseIdx}
 							/>
 						))
 					) : (
 						<div>
 							<p>no workouts</p>
-							<button>add workout</button>
+							<Button label="add workout" />
 						</div>
 					)}
 				</div>

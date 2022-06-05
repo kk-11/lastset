@@ -1,0 +1,23 @@
+.wrapper {
+	background-color: rebeccapurple;
+	position: fixed;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	bottom: 0;
+	left: 0;
+	color: white;
+	width: 100%;
+	height: 50px;
+	.primary {
+		background-color: white;
+		border-radius: 100%;
+		height: 50px;
+		width: 50px;
+		transform: translateY(-50%);
+		color: rebeccapurple;
+		border: 2px solid rebeccapurple;
+		font-size: 2rem;
+		font-weight: 900;
+	}
+}

@@ -20,12 +20,6 @@
 	letter-spacing: 2px;
 }
 
-.btn {
-	padding: 20px 30px;
-	background-color: rgba($color: #3d97bb, $alpha: 0.1);
-	margin-top: 2rem;
-}
-
 .remove {
 	margin-top: 30px;
 	background-color: red;
@@ -40,25 +34,5 @@
 	&.hide {
 		opacity: 0;
 		pointer-events: none;
-	}
-}
-
-.exit {
-	position: absolute;
-	top: 15px;
-	right: 25px;
-	&:before,
-	&:after {
-		background-color: black;
-		height: 3px;
-		width: 20px;
-		position: absolute;
-		display: block;
-		content: '';
-		transform: rotate(-45deg);
-		transform-origin: center;
-	}
-	&::after {
-		transform: rotate(45deg);
 	}
 }

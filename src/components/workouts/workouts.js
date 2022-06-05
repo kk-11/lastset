@@ -1,19 +1,19 @@
 import React, { useContext, useState } from 'react';
 import classnames from 'classnames';
 import { store } from '../../context';
-import Workout from '../workout/workout';
-import { setWorkout, removeWorkout } from '../../constants';
-import AddWorkoutModal from '../addWorkoutModal/addWorkoutModal';
+import { setWorkout, removeWorkout, toggleMetric } from '../../constants';
+import { AddWorkoutModal, Workout } from '../';
 import s from './workouts.module.scss';
 
 export default function Workouts() {
-	let timer;
+	const [timer, setTimer] = useState();
 	const { state, dispatch } = useContext(store);
 	const [addWorkoutModalOpen, setAddWorkoutModalOpen] = useState(false);
 	const [showDeleteButtons, setShowDeleteButtons] = useState(false);
-	const { workouts = [], activeWorkoutIdx } = state;
+	const { workouts = [], workoutIdx, useMetric } = state;
 
 	const handleWorkoutClick = (i) => {
+		if (timer) clearTimeout(timer);
 		dispatch({
 			type: setWorkout,
 			payload: i,
@@ -21,15 +21,19 @@ export default function Workouts() {
 	};
 
 	const handleTouchStart = () => {
-		timer = setTimeout(() => setShowDeleteButtons(true), 1618);
+		setTimer(setTimeout(() => setShowDeleteButtons(true), 1618));
 	};
 	const handleTouchEnd = () => {
 		if (timer) clearTimeout(timer);
 	};
 
 	return (
-		<div className={s.wrapper}>
-			{activeWorkoutIdx === null || !workouts[activeWorkoutIdx] ? (
+		<div
+			className={s.wrapper}
+			onClick={() => setShowDeleteButtons(false)}
+			onTouchStart={() => dispatch({ type: toggleMetric, payload: !useMetric })}
+			onTouchEnd={() => dispatch({ type: toggleMetric, payload: !useMetric })}>
+			{workoutIdx === null || !workouts[workoutIdx] ? (
 				<>
 					{workouts?.map(({ name }, idx) => (
 						<div key={name} className={s.workoutButtons}>
@@ -46,12 +50,13 @@ export default function Workouts() {
 							{showDeleteButtons && (
 								<button
 									className={s.deleteWorkoutX}
-									onClick={() =>
-										dispatch({
+									onClick={(evt) => {
+										evt.stopPropagation();
+										return dispatch({
 											type: removeWorkout,
 											payload: { name },
-										})
-									}
+										});
+									}}
 								/>
 							)}
 						</div>
@@ -63,7 +68,7 @@ export default function Workouts() {
 					</button>
 				</>
 			) : (
-				<Workout data={workouts[activeWorkoutIdx]} />
+				<Workout data={workouts[workoutIdx]} />
 			)}
 			{addWorkoutModalOpen && (
 				<AddWorkoutModal

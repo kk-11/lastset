@@ -1,0 +1,18 @@
+.backButton {
+	position: absolute;
+	padding: 30px 20px;
+	&:before,
+	&:after {
+		background-color: black;
+		height: 3px;
+		width: 20px;
+		position: absolute;
+		display: block;
+		content: '';
+		transform: rotate(-45deg);
+		transform-origin: center;
+	}
+	&::after {
+		transform: rotate(45deg);
+	}
+}

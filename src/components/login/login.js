@@ -1,10 +1,11 @@
 import React, { useState, useContext } from 'react';
 import { store } from '../../context';
+import { toggleSignUp } from '../../constants';
 import s from './login.module.scss';
 
 export default function Login() {
-	const { state } = useContext(store);
-
+	const { state, dispatch } = useContext(store);
+	const { user, signUpDismissed } = state;
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
@@ -19,7 +20,8 @@ export default function Login() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 	};
-	return null;
+
+	if (user || signUpDismissed) return null;
 	return (
 		<div className={s.wrapper}>
 			<h4>Sign in to get regular backups</h4>
@@ -40,6 +42,9 @@ export default function Login() {
 				/>
 				<button type="submit">Login</button>
 			</form>
+			<button onClick={() => dispatch({ type: toggleSignUp, payload: true })}>
+				I'll take my chances
+			</button>
 		</div>
 	);
 }

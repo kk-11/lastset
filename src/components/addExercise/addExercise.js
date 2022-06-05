@@ -1,14 +1,16 @@
 import React, { useState, useContext } from 'react';
 import { store } from '../../context';
 import { addExercise } from '../../constants';
+import Button from '../../ui/button';
+import { Modal } from '../';
+
 import s from './addExercise.module.scss';
-import Modal from '../modal/modal';
 
 export function AddExercisePanel({ closeModal }) {
 	const { dispatch } = useContext(store);
 	const [name, setName] = useState('');
-	const [weight, setWeight] = useState('');
-	const [reps, setReps] = useState('');
+	const [weight, setWeight] = useState();
+	const [reps, setReps] = useState();
 
 	const handleAddExercise = () => {
 		if (typeof closeModal === 'function') {
@@ -45,9 +47,11 @@ export function AddExercisePanel({ closeModal }) {
 				reps={reps}
 				onChange={(evt) => setReps(evt.target.value)}
 			/>
-			<button className={s.addExerciseBtn} onClick={handleAddExercise}>
-				Add
-			</button>
+			<Button
+				className={s.addExerciseBtn}
+				onClick={handleAddExercise}
+				label="Add"
+			/>
 		</>
 	);
 }

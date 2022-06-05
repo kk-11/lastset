@@ -1,20 +1,20 @@
 import React, { useContext } from 'react';
-import { removeExercise, setExercise, setName } from '../../constants';
 import classnames from 'classnames';
 
+import { removeExercise, setExercise, setName } from '../../constants';
 import { store } from '../../context';
 
-import Reps from '../reps/reps';
-import Weight from '../weight/weight';
+import Button from '../../ui/button';
+import { Reps, Weight } from '../';
 
 import s from './exercise.module.scss';
 
 export default function Exercise({ data, active }) {
 	const { state, dispatch } = useContext(store);
-	const { activeExerciseIdx, activeWorkoutIdx, workouts } = state;
+	const { exerciseIdx, workoutIdx, workouts } = state;
 	const { name, weight, reps } = data;
 
-	const amountOfExercises = workouts[activeWorkoutIdx].exercises.length - 1;
+	const amountOfExercises = workouts[workoutIdx].exercises.length - 1;
 
 	const handleRemove = () => {
 		// eslint-disable-next-line no-restricted-globals
@@ -22,25 +22,22 @@ export default function Exercise({ data, active }) {
 		if (confirmed) {
 			dispatch({
 				type: removeExercise,
-				payload: activeExerciseIdx,
+				payload: exerciseIdx,
 			});
-			if (activeExerciseIdx === amountOfExercises) {
+			if (exerciseIdx === amountOfExercises) {
 				handleExerciseChange(-1);
 			}
 		}
 	};
 
-	const first = activeExerciseIdx === 0;
-	const last = activeExerciseIdx === amountOfExercises;
+	const first = exerciseIdx === 0;
+	const last = exerciseIdx === amountOfExercises;
 
 	const handleExerciseChange = (inc) => {
-		if (
-			activeExerciseIdx + inc >= 0 &&
-			activeExerciseIdx + inc <= amountOfExercises
-		) {
+		if (exerciseIdx + inc >= 0 && exerciseIdx + inc <= amountOfExercises) {
 			dispatch({
 				type: setExercise,
-				payload: activeExerciseIdx + inc,
+				payload: exerciseIdx + inc,
 			});
 		}
 	};
@@ -49,21 +46,12 @@ export default function Exercise({ data, active }) {
 
 	return (
 		<div className={s.wrapper}>
-			<button
+			<Button
 				onClick={() => handleExerciseChange(-1)}
-				className={classnames(s.nextPrev, first && s.hide)}>
-				prev
-			</button>
+				className={classnames(s.nextPrev, first && s.hide)}
+				label="prev"
+			/>
 			<div className={s.exercise}>
-				<button
-					className={s.exit}
-					onClick={() =>
-						dispatch({
-							type: setExercise,
-							payload: null,
-						})
-					}
-				/>
 				<textarea
 					className={s.title}
 					onChange={(evt) =>
@@ -76,25 +64,20 @@ export default function Exercise({ data, active }) {
 					value={name}
 				/>
 
-				{weight !== null ? (
+				{weight !== undefined && weight !== null ? (
 					<Weight weight={weight} />
 				) : (
-					<button>add weight</button>
+					<Button label="add weight" />
 				)}
 				{reps !== null && <Reps reps={reps} />}
 
-				<button className={s.btn} onClick={() => handleExerciseChange(+1)}>
-					Enter
-				</button>
-				<button className={s.remove} onClick={handleRemove}>
-					REMOVE
-				</button>
+				<Button className={s.remove} onClick={handleRemove} label="REMOVE" />
 			</div>
-			<button
+			<Button
 				onClick={() => handleExerciseChange(+1)}
-				className={classnames(s.nextPrev, last && s.hide)}>
-				next
-			</button>
+				className={classnames(s.nextPrev, last && s.hide)}
+				label="next"
+			/>
 		</div>
 	);
 }

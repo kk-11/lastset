@@ -18,7 +18,7 @@ import s from './testSuite.module.scss';
 
 export default function TestSuite() {
 	const { state, dispatch } = useContext(store);
-	const { menuOpen, workouts, activeWorkoutIdx } = state;
+	const { menuOpen, workouts, workoutIdx } = state;
 	const actions = [
 		addWorkout,
 		addExercise,
@@ -41,7 +41,7 @@ export default function TestSuite() {
 			weight: 12,
 			reps: 12,
 		},
-		{ name: workouts[activeWorkoutIdx]?.name || 'TEST' },
+		{ name: workouts[workoutIdx]?.name || 'TEST' },
 		removeExercise,
 		setWorkoutName,
 		setWorkout,
