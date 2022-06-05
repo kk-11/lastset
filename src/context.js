@@ -5,15 +5,15 @@ import { updateLocalStorage } from './utils/updateLocalStorage.js';
 
 import { reducer } from './reducer';
 
-let baseData = window.localStorage.getItem('lastSetWTF');
-if (baseData === null) {
-	updateLocalStorage(data);
-} else {
-	baseData = JSON.parse(baseData);
-}
+// let baseData = window.localStorage.getItem('lastSetWTF');
+// if (baseData === null) {
+// 	updateLocalStorage(data);
+// } else {
+// 	baseData = JSON.parse(baseData);
+// }
 
 export const initialState = {
-	workouts: baseData,
+	workouts: JSON.parse(window.localStorage.getItem('lastSetWTF')) || data,
 	activeWorkoutIdx: null,
 	activeExerciseIdx: null,
 	user: undefined,

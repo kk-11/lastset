@@ -11,7 +11,7 @@ export default function Workouts() {
 	const { state, dispatch } = useContext(store);
 	const [addWorkoutModalOpen, setAddWorkoutModalOpen] = useState(false);
 	const [showDeleteButtons, setShowDeleteButtons] = useState(false);
-	const { workouts, activeWorkoutIdx } = state;
+	const { workouts = [], activeWorkoutIdx } = state;
 
 	const handleWorkoutClick = (i) => {
 		dispatch({
@@ -29,7 +29,7 @@ export default function Workouts() {
 
 	return (
 		<div className={s.wrapper}>
-			{!workouts[activeWorkoutIdx] || activeWorkoutIdx === null ? (
+			{activeWorkoutIdx === null || !workouts[activeWorkoutIdx] ? (
 				<>
 					{workouts?.map(({ name }, idx) => (
 						<div key={name} className={s.workoutButtons}>
