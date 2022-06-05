@@ -29,7 +29,8 @@ export default function Workouts() {
 
 	return (
 		<div className={s.wrapper}>
-			{(workouts && !workouts[activeWorkoutIdx]) ||
+			{workouts.length === 0 ||
+			!workouts[activeWorkoutIdx] ||
 			activeWorkoutIdx === null ? (
 				<>
 					{workouts.map(({ name }, idx) => (
