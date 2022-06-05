@@ -29,7 +29,8 @@ export default function Workouts() {
 
 	return (
 		<div className={s.wrapper}>
-			{!workouts?[activeWorkoutIdx] || activeWorkoutIdx === null ? (
+			{(workouts && !workouts[activeWorkoutIdx]) ||
+			activeWorkoutIdx === null ? (
 				<>
 					{workouts.map(({ name }, idx) => (
 						<div key={name} className={s.workoutButtons}>
