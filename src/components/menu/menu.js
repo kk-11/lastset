@@ -1,36 +1,31 @@
 import React, { useContext } from 'react';
 import classNames from 'classnames';
-import { toggleMenu, toggleMetric, toggleSignUp } from '../../constants';
+import { toggleMenu, toggleMetric, dismissSignUp } from '../../constants';
 import { store } from '../../context';
 import s from './menu.module.scss';
 
 export default function Menu() {
 	const { state, dispatch } = useContext(store);
-	const { menuOpen, useMetric, signUpDismissed } = state;
-
-	const menuItemClick = (action) => {
-		console.log(action);
-		dispatch({ type: toggleMenu, value: !menuOpen });
-		dispatch(action);
-	};
+	const { menuOpen, useMetric } = state;
 
 	return (
 		<div className={classNames([s.wrapper, menuOpen && s.active])}>
 			<button
 				className={classNames([s.item])}
-				onClick={() =>
-					menuItemClick({ type: toggleMetric, payload: !useMetric })
-				}>
+				onClick={() => {
+					return dispatch({ type: toggleMetric, payload: !useMetric });
+				}}>
 				Default unit: {useMetric ? 'metric' : 'imperical'}
 			</button>
 			<button
 				className={classNames([s.item])}
-				onClick={() =>
-					menuItemClick({
-						type: toggleSignUp,
-						value: !signUpDismissed,
-					})
-				}>
+				onClick={() => {
+					dispatch({ type: toggleMenu, value: !menuOpen });
+					return dispatch({
+						type: dismissSignUp,
+						value: false,
+					});
+				}}>
 				connect an email / sign in / last backup
 			</button>
 			<p>last backup: xx/xx/xx</p>

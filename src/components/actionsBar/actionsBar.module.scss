@@ -1,5 +1,5 @@
 .wrapper {
-	background-color: rebeccapurple;
+	background-color: #e9e3e9;
 	position: fixed;
 	display: flex;
 	align-items: center;
@@ -15,9 +15,13 @@
 		height: 50px;
 		width: 50px;
 		transform: translateY(-50%);
-		color: rebeccapurple;
-		border: 2px solid rebeccapurple;
+		color: #e9e3e9;
+		border: 2px solid #e9e3e9;
 		font-size: 2rem;
 		font-weight: 900;
+		transition: transform 123ms;
+		&.active {
+			transform: rotate(-45deg);
+		}
 	}
 }

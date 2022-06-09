@@ -12,7 +12,7 @@ import {
 	addWorkout,
 	toggleMenu,
 	toggleMetric,
-	toggleSignUp,
+	dismissSignUp,
 } from './constants';
 import { updateLocalStorage } from './utils/updateLocalStorage.js';
 
@@ -91,7 +91,7 @@ export const reducer = (state, action) => {
 				...state,
 				useMetric: payload,
 			};
-		case toggleSignUp:
+		case dismissSignUp:
 			return {
 				...state,
 				signUpDismissed: payload,

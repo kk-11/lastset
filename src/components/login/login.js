@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { store } from '../../context';
-import { toggleSignUp } from '../../constants';
+import { dismissSignUp } from '../../constants';
 import s from './login.module.scss';
 
 export default function Login() {
@@ -42,7 +42,7 @@ export default function Login() {
 				/>
 				<button type="submit">Login</button>
 			</form>
-			<button onClick={() => dispatch({ type: toggleSignUp, payload: true })}>
+			<button onClick={() => dispatch({ type: dismissSignUp, payload: true })}>
 				I'll take my chances
 			</button>
 		</div>

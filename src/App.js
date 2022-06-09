@@ -17,12 +17,12 @@ const App = () => {
 	useEventListeners();
 	return (
 		<main className={s.wrapper}>
-			<Burger />
-			<Menu />
+			{/* <Burger /> */}
+			{/* <Menu /> */}
 			<BackButton />
-			<Login />
+			{/* <Login /> */}
 			<Workouts />
-			<ActionsBar />
+			{/* <ActionsBar /> */}
 			{/* <TestSuite /> */}
 		</main>
 	);
